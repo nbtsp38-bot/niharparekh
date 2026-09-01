@@ -60,11 +60,11 @@ function PanelCard({
   const spotX = useMotionValue(70);
   const spotY = useMotionValue(90);
 
-  // Studio light reflection
+  // Studio light reflection with champagne / bronze tint
   const spotlightBg = useTransform(
     [spotX, spotY],
     ([x, y]) =>
-      `radial-gradient(150px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.08), transparent 75%)`
+      `radial-gradient(150px circle at ${x}px ${y}px, color-mix(in srgb, var(--accent) 14%, transparent), transparent 75%)`
   );
 
   // Smooth outward focus shift for neighboring cards
@@ -147,8 +147,8 @@ function PanelCard({
         }}
         className={`relative flex h-full w-full flex-col overflow-hidden rounded-2xl border p-1.5 transition-all duration-300 ${
           isHovered
-            ? "border-neutral-400/90 bg-[#141416] shadow-[0_22px_45px_-12px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.12)] ring-1 ring-foreground/15 dark:border-white/28 dark:bg-neutral-900"
-            : "border-neutral-300/50 bg-[#fafafa] shadow-[0_10px_25px_-8px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] ring-1 ring-foreground/5 dark:border-white/10 dark:bg-[#0c0c0e] dark:shadow-[0_12px_30px_-10px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.05)]"
+            ? "border-accent/45 bg-surface-primary shadow-[0_22px_45px_-12px_rgba(0,0,0,0.85),inset_0_1px_0_color-mix(in_srgb,var(--accent-highlight)_30%,transparent)] ring-1 ring-accent/25 dark:border-accent/40 dark:bg-[#131315]"
+            : "border-border/80 bg-surface-primary shadow-[0_10px_25px_-8px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] ring-1 ring-foreground/5 dark:border-white/[0.07] dark:bg-[#0f0f11] dark:shadow-[0_12px_30px_-10px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.03)]"
         }`}
       >
         {/* Studio Lighting Specular Layer */}
@@ -160,12 +160,12 @@ function PanelCard({
         />
 
         {/* Inner Tactile Frame */}
-        <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-foreground/[0.04] bg-foreground/[0.015] dark:border-white/[0.04] dark:bg-white/[0.015]">
-          {/* Subtle Top Inner Edge Highlight */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-foreground/12 to-transparent dark:via-white/15" />
+        <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-foreground/[0.04] bg-surface-secondary/40 dark:border-white/[0.04] dark:bg-white/[0.015]">
+          {/* Subtle Top Inner Edge Highlight in Champagne / Bronze */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
-          {/* Identity Detail: Subtle Corner Index Number */}
-          <span className="pointer-events-none absolute top-2 left-2.5 font-mono text-[7.5px] font-normal tracking-[0.2em] text-foreground/25 transition-colors duration-300 group-hover:text-foreground/50 sm:text-[8px]">
+          {/* Identity Detail: Subtle Corner Index Number in Accent Tone */}
+          <span className="pointer-events-none absolute top-2 left-2.5 font-mono text-[7.5px] font-medium tracking-[0.2em] text-accent/50 transition-colors duration-300 group-hover:text-accent-highlight sm:text-[8px]">
             {panel.num}
           </span>
 
@@ -182,7 +182,7 @@ function PanelCard({
 
           {/* Centered Typography */}
           <div className="relative z-10 flex flex-col items-center justify-center px-1.5 text-center">
-            <span className="font-mono text-[11.5px] font-medium tracking-[0.32em] text-foreground/50 transition-all duration-300 group-hover:tracking-[0.36em] group-hover:text-foreground sm:text-[12.5px]">
+            <span className="font-mono text-[11.5px] font-medium tracking-[0.32em] text-foreground/60 transition-all duration-300 group-hover:tracking-[0.36em] group-hover:text-foreground sm:text-[12.5px]">
               {panel.label}
             </span>
 
@@ -190,13 +190,13 @@ function PanelCard({
             <motion.p
               initial={false}
               animate={{
-                opacity: isHovered ? 0.85 : 0,
+                opacity: isHovered ? 0.9 : 0,
                 y: isHovered ? 0 : 4,
                 height: isHovered ? "auto" : 0,
                 marginTop: isHovered ? 5 : 0,
               }}
               transition={{ duration: 0.22, ease: EASE }}
-              className="overflow-hidden font-mono text-[7.5px] font-normal tracking-[0.14em] text-foreground/55 uppercase select-none dark:text-foreground/50 sm:text-[8px]"
+              className="overflow-hidden font-mono text-[7.5px] font-normal tracking-[0.14em] text-muted-foreground uppercase select-none sm:text-[8px]"
             >
               {panel.sub}
             </motion.p>

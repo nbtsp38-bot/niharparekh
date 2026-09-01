@@ -186,8 +186,8 @@ export function Projects({
               onClick={() => setFilter("all")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "all"
-                  ? "bg-background text-foreground shadow-sm ring-1 ring-foreground/5"
-                  : "text-foreground/65 hover:text-foreground"
+                  ? "bg-surface-primary text-foreground shadow-sm ring-1 ring-accent/40"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               All Work
@@ -196,8 +196,8 @@ export function Projects({
               onClick={() => setFilter("motion")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "motion"
-                  ? "bg-background text-foreground shadow-sm ring-1 ring-foreground/5"
-                  : "text-foreground/65 hover:text-foreground"
+                  ? "bg-surface-primary text-foreground shadow-sm ring-1 ring-accent/40"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Motion Graphics
@@ -206,8 +206,8 @@ export function Projects({
               onClick={() => setFilter("short-form")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "short-form"
-                  ? "bg-background text-foreground shadow-sm ring-1 ring-foreground/5"
-                  : "text-foreground/65 hover:text-foreground"
+                  ? "bg-surface-primary text-foreground shadow-sm ring-1 ring-accent/40"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Short-Form Editing
@@ -216,8 +216,8 @@ export function Projects({
               onClick={() => setFilter("promo")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "promo"
-                  ? "bg-background text-foreground shadow-sm ring-1 ring-foreground/5"
-                  : "text-foreground/65 hover:text-foreground"
+                  ? "bg-surface-primary text-foreground shadow-sm ring-1 ring-accent/40"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Promo
