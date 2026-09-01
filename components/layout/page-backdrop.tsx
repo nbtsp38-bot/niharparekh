@@ -4,7 +4,7 @@ export function PageBackdrop(): ReactNode {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[56rem] overflow-hidden select-none"
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none"
     >
       {/* Layer 1: Deep black-velvet base with warm center lift */}
       <div
@@ -37,14 +37,13 @@ export function PageBackdrop(): ReactNode {
         }}
       />
 
-      {/* Layer 4: Dark vignette to keep edges deep black */}
+      {/* Layer 4: Corner vignettes only — no bottom band to avoid scroll seam */}
       <div
         className="absolute inset-0"
         style={{
           background: `
             radial-gradient(ellipse 110% 110% at 0% 0%, rgba(3,2,1,0.55) 0%, transparent 50%),
-            radial-gradient(ellipse 110% 110% at 100% 0%, rgba(3,2,1,0.45) 0%, transparent 50%),
-            radial-gradient(ellipse 110% 70% at 50% 100%, rgba(3,2,1,0.60) 0%, transparent 65%)
+            radial-gradient(ellipse 110% 110% at 100% 0%, rgba(3,2,1,0.45) 0%, transparent 50%)
           `,
         }}
       />
