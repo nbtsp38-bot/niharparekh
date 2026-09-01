@@ -147,8 +147,8 @@ function PanelCard({
         }}
         className={`relative flex h-full w-full flex-col overflow-hidden rounded-2xl border p-1.5 transition-all duration-300 ${
           isHovered
-            ? "border-accent/45 bg-[#FFFFFF] shadow-[0_18px_38px_-10px_rgba(26,25,23,0.12),0_4px_12px_-3px_rgba(26,25,23,0.05),inset_0_1px_0_color-mix(in_srgb,var(--accent-highlight)_25%,transparent)] dark:border-accent/40 dark:bg-[#121212] dark:shadow-[0_24px_50px_-14px_rgba(0,0,0,0.95),0_6px_18px_-4px_rgba(0,0,0,0.6),inset_0_1px_0_color-mix(in_srgb,var(--accent-highlight)_22%,transparent)]"
-            : "border-[#DFDBD2] bg-surface-primary shadow-[0_10px_24px_-8px_rgba(26,25,23,0.07),inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-white/[0.07] dark:bg-[#0D0D0D] dark:shadow-[0_14px_34px_-10px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.04),inset_0_-1px_0_rgba(0,0,0,0.4)]"
+            ? "border-accent/45 bg-surface-elevated shadow-[0_18px_38px_-10px_rgba(26,25,23,0.1),0_4px_12px_-3px_rgba(26,25,23,0.04),inset_0_1px_0_color-mix(in_srgb,var(--accent-highlight)_25%,transparent)] dark:border-accent/40 dark:bg-surface-elevated dark:shadow-[0_24px_50px_-14px_rgba(0,0,0,0.9),0_6px_18px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_color-mix(in_srgb,var(--accent-highlight)_22%,transparent)]"
+            : "border-border bg-surface-primary shadow-[0_10px_24px_-8px_rgba(26,25,23,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] dark:border-border dark:bg-surface-primary dark:shadow-[0_14px_34px_-10px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.04),inset_0_-1px_0_rgba(0,0,0,0.4)]"
         }`}
       >
         {/* Softbox Studio Lighting Specular Layer */}

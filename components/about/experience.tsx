@@ -74,11 +74,11 @@ export function Experience(): ReactNode {
       </div>
 
       {/* Main Container */}
-      <div className="relative overflow-hidden rounded-3xl border border-border/70 bg-surface-primary/60 p-5 backdrop-blur-sm shadow-[0_10px_30px_-15px_rgba(0,0,0,0.04)] dark:border-white/[0.06] dark:bg-[#0D0D0D]/80 dark:shadow-[0_16px_36px_-18px_rgba(0,0,0,0.85)] sm:p-7">
+      <div className="relative overflow-hidden rounded-3xl border border-border bg-surface-primary/60 p-5 backdrop-blur-sm shadow-[0_10px_30px_-15px_rgba(0,0,0,0.04)] dark:border-border dark:bg-surface-primary/80 dark:shadow-[0_16px_36px_-18px_rgba(0,0,0,0.85)] sm:p-7">
         {/* Subtle Vertical Timeline Guide Line */}
         <div 
           aria-hidden="true" 
-          className="pointer-events-none absolute bottom-8 left-[31px] top-8 w-[1px] bg-gradient-to-b from-accent/40 via-border/80 to-transparent dark:from-accent/40 dark:via-white/[0.08] sm:left-[39px]"
+          className="pointer-events-none absolute bottom-8 left-[31px] top-8 w-[1px] bg-gradient-to-b from-accent/40 via-border/80 to-transparent dark:from-accent/40 dark:via-border/60 sm:left-[39px]"
         />
 
         <div className="relative flex flex-col gap-6 sm:gap-7">
@@ -91,7 +91,7 @@ export function Experience(): ReactNode {
 
         {/* Expand / Collapse Control */}
         {hasMore && (
-          <div className="mt-6 flex justify-center border-t border-border/50 pt-4 dark:border-white/[0.05]">
+          <div className="mt-6 flex justify-center border-t border-border/50 pt-4 dark:border-border/50">
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -135,8 +135,8 @@ function ExperienceItem({
         <span
           className={`flex h-6 w-6 items-center justify-center rounded-full border font-mono text-[8px] font-medium tracking-wider transition-all duration-300 sm:h-7 sm:w-7 sm:text-[9px] ${
             entry.isCurrent
-              ? "border-accent/90 bg-surface-primary text-accent shadow-[0_0_12px_-2px_rgba(168,138,85,0.4)] ring-3 ring-accent/15 dark:bg-[#111111]"
-              : "border-border/90 bg-surface-primary text-muted-foreground/70 group-hover:border-accent/70 group-hover:text-accent dark:border-white/10 dark:bg-[#111111]"
+              ? "border-accent/90 bg-surface-primary text-accent shadow-[0_0_12px_-2px_rgba(176,138,87,0.4)] ring-3 ring-accent/15 dark:bg-surface-elevated"
+              : "border-border bg-surface-primary text-muted-foreground/70 group-hover:border-accent/70 group-hover:text-accent dark:border-border dark:bg-surface-elevated"
           }`}
         >
           {entry.num}
@@ -145,7 +145,7 @@ function ExperienceItem({
 
       {/* Monogram / Brand Icon */}
       <div className="relative z-10 hidden shrink-0 sm:flex">
-        <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-border/80 bg-surface-secondary/50 font-mono text-[10.5px] font-semibold tracking-wider text-foreground/80 shadow-xs transition-all duration-300 group-hover:border-accent/40 group-hover:bg-surface-secondary dark:border-white/[0.08] dark:bg-white/[0.02] dark:group-hover:border-accent/35 dark:group-hover:bg-white/[0.04]">
+        <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-surface-secondary/50 font-mono text-[10.5px] font-semibold tracking-wider text-foreground/80 shadow-xs transition-all duration-300 group-hover:border-accent/40 group-hover:bg-surface-secondary dark:border-border dark:bg-surface-secondary/40 dark:group-hover:border-accent/35 dark:group-hover:bg-surface-secondary">
           {entry.type === "freelance" ? (
             <span className="text-accent">{entry.monogram}</span>
           ) : (

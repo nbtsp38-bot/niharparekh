@@ -304,10 +304,10 @@ function ProjectCard({
       <article 
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="project-card flex flex-col gap-4 rounded-3xl border border-foreground/8 bg-background p-3 sm:p-3.5 transition-shadow hover:shadow-md"
+        className="project-card flex flex-col gap-4 rounded-3xl border border-border bg-surface-primary p-3 sm:p-3.5 transition-all duration-300"
       >
         <header className="flex items-center gap-2.5 px-1 pt-2">
-          <span className="border-foreground/10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border bg-background">
+          <span className="border-border inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border bg-surface-secondary">
             <Icon className="h-3.5 w-3.5 text-foreground" aria-hidden="true" />
           </span>
           <span className="text-sm font-medium tracking-tight text-foreground">
@@ -316,7 +316,7 @@ function ProjectCard({
         </header>
 
         {/* Video Card Player */}
-        <div className={`relative w-full overflow-hidden rounded-2xl bg-foreground/5 ring-1 ring-foreground/5 ${
+        <div className={`relative w-full overflow-hidden rounded-2xl bg-surface-secondary/60 ring-1 ring-border ${
           project.category === "short-form" ? "aspect-[9/16]" : "aspect-video"
         }`}>
           <video
@@ -331,7 +331,7 @@ function ProjectCard({
           />
           {!isPlaying && (
             <div className="absolute inset-0 pointer-events-none flex items-center justify-center bg-black/15 transition-opacity duration-300">
-              <div className="rounded-full bg-background/90 p-3 shadow-lg ring-1 ring-foreground/10 flex items-center justify-center">
+              <div className="rounded-full bg-surface-elevated/95 p-3 shadow-lg ring-1 ring-border flex items-center justify-center">
                 <Play className="h-5 w-5 text-foreground fill-foreground translate-x-0.5" />
               </div>
             </div>
@@ -342,12 +342,12 @@ function ProjectCard({
           <h3 className="text-[20px] font-medium leading-[1.2] tracking-tight text-foreground sm:text-[22px]">
             {project.title}
           </h3>
-          <p className="text-[14px] leading-normal tracking-tight text-foreground/65 sm:text-[15px]">
+          <p className="text-[14px] leading-normal tracking-tight text-muted-foreground sm:text-[15px]">
             {project.description}
           </p>
         </div>
 
-        <p className="px-1 pb-2 text-[12px] tracking-tight text-foreground/50">
+        <p className="px-1 pb-2 font-mono text-[11px] tracking-wider text-text-muted">
           {project.meta}
         </p>
       </article>

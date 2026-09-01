@@ -353,7 +353,7 @@ export function Stack(): ReactNode {
       </div>
 
       {/* Physics Container */}
-      <div className="relative h-64 overflow-hidden rounded-3xl border border-border/70 bg-surface-primary/60 backdrop-blur-sm shadow-[0_10px_30px_-15px_rgba(0,0,0,0.04)] dark:border-white/[0.06] dark:bg-[#0D0D0D]/80 dark:shadow-[0_16px_36px_-18px_rgba(0,0,0,0.85)] sm:h-80">
+      <div className="relative h-64 overflow-hidden rounded-3xl border border-border bg-surface-primary/60 backdrop-blur-sm shadow-[0_10px_30px_-15px_rgba(0,0,0,0.04)] dark:border-border dark:bg-surface-primary/80 dark:shadow-[0_16px_36px_-18px_rgba(0,0,0,0.85)] sm:h-80">
         {/* Subtle Surface Texture Detail */}
         <div 
           aria-hidden="true"
@@ -369,7 +369,7 @@ export function Stack(): ReactNode {
           onClick={() => setResetKey((k) => k + 1)}
           aria-label="Reset stack"
           title="RESET STACK"
-          className="focus-ring group absolute right-3 top-3 z-20 inline-flex items-center gap-1.5 rounded-xl border border-border/80 bg-surface-primary/90 px-2.5 py-1 font-mono text-[9.5px] font-medium tracking-wider text-muted-foreground transition-all duration-300 hover:border-accent/40 hover:text-foreground hover:shadow-xs dark:border-white/10 dark:bg-[#111111]/90"
+          className="focus-ring group absolute right-3 top-3 z-20 inline-flex items-center gap-1.5 rounded-xl border border-border bg-surface-primary/90 px-2.5 py-1 font-mono text-[9.5px] font-medium tracking-wider text-muted-foreground transition-all duration-300 hover:border-accent/40 hover:text-foreground hover:shadow-xs dark:border-border dark:bg-surface-elevated/90"
         >
           <span className="hidden sm:inline">RESET</span>
           <RotateCcw
@@ -418,7 +418,7 @@ export function Stack(): ReactNode {
 function ChipPill({ tool }: { tool: SoftwareTool }): ReactNode {
   return (
     <div
-      className="group inline-flex items-center gap-2.5 rounded-2xl border border-border/80 bg-surface-primary px-3 py-1.5 text-[13px] font-medium tracking-tight text-foreground shadow-[0_4px_14px_-3px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-accent/40 hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(208,180,119,0.25)] dark:border-white/[0.08] dark:bg-[#131315] dark:text-[#E9E6DE] dark:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.05)] dark:hover:border-accent/40 sm:text-[13.5px]"
+      className="group inline-flex items-center gap-2.5 rounded-2xl border border-border bg-surface-primary px-3 py-1.5 text-[13px] font-medium tracking-tight text-foreground shadow-[0_4px_14px_-3px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-accent/40 hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(208,180,119,0.25)] dark:border-border dark:bg-surface-elevated dark:text-foreground dark:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.05)] dark:hover:border-accent/40 sm:text-[13.5px]"
     >
       <div className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
         {tool.renderIcon()}

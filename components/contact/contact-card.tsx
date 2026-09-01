@@ -77,7 +77,7 @@ export function ContactCard(): ReactNode {
         <div
           ref={containerRef}
           onPointerMove={handlePointerMove}
-          className="relative overflow-hidden rounded-[2.5rem] border border-border/80 bg-surface-primary/70 p-7 backdrop-blur-md shadow-[0_20px_50px_-20px_rgba(0,0,0,0.06)] dark:border-white/[0.07] dark:bg-[#0A0A0A] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.9)] sm:p-12 md:p-16 lg:p-20"
+          className="relative overflow-hidden rounded-[2.5rem] border border-border bg-surface-primary/70 p-7 backdrop-blur-md shadow-[0_20px_50px_-20px_rgba(0,0,0,0.06)] dark:border-border dark:bg-background-deep dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.9)] sm:p-12 md:p-16 lg:p-20"
         >
           {/* Subtle Atmospheric Studio Light Follower */}
           <motion.div
@@ -132,7 +132,7 @@ export function ContactCard(): ReactNode {
                 className="group relative inline-flex cursor-pointer items-center gap-4 py-2 text-left font-mono text-[14px] sm:text-[16px] font-semibold uppercase tracking-[0.22em] text-foreground transition-colors hover:text-accent"
               >
                 <span>{copied ? "COPIED TO CLIPBOARD" : "LET'S WORK TOGETHER"}</span>
-                <span className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-border/80 bg-surface-secondary/60 text-foreground transition-all duration-300 group-hover:border-accent/60 group-hover:bg-accent group-hover:text-background dark:border-white/10 dark:bg-white/[0.04]">
+                <span className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-border bg-surface-secondary text-foreground transition-all duration-300 group-hover:border-accent/60 group-hover:bg-accent group-hover:text-background dark:border-border dark:bg-surface-elevated">
                   {copied ? (
                     <Check className="h-4 w-4" aria-hidden="true" />
                   ) : (
@@ -146,7 +146,7 @@ export function ContactCard(): ReactNode {
             </div>
 
             {/* Minimal Editorial Contact Rows */}
-            <div className="flex flex-col border-t border-border/60 dark:border-white/[0.07]">
+            <div className="flex flex-col border-t border-border dark:border-border">
               {CONTACT_LINKS.map((link) => {
                 const Icon = link.icon;
                 return (
@@ -154,7 +154,7 @@ export function ContactCard(): ReactNode {
                     key={link.id}
                     whileHover={{ x: 6 }}
                     transition={{ duration: 0.3, ease: EASE }}
-                    className="group flex border-b border-border/60 dark:border-white/[0.07]"
+                    className="group flex border-b border-border dark:border-border"
                   >
                     {link.isCopy ? (
                       <button
@@ -163,7 +163,7 @@ export function ContactCard(): ReactNode {
                         className="flex w-full cursor-pointer items-center justify-between py-4 sm:py-5 text-left transition-colors"
                       >
                         <div className="flex items-center gap-3 sm:gap-4">
-                          <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border/70 bg-surface-secondary/40 text-muted-foreground transition-colors group-hover:border-accent/40 group-hover:text-accent dark:border-white/10 dark:bg-white/[0.02]">
+                          <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-surface-secondary text-muted-foreground transition-colors group-hover:border-accent/40 group-hover:text-accent dark:border-border dark:bg-surface-elevated">
                             {copied ? <Check className="h-3.5 w-3.5" /> : <Icon className="h-3.5 w-3.5" />}
                           </span>
                           <span className="font-mono text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.16em] text-foreground transition-colors group-hover:text-accent">
@@ -186,7 +186,7 @@ export function ContactCard(): ReactNode {
                         className="flex w-full cursor-pointer items-center justify-between py-4 sm:py-5 text-left transition-colors"
                       >
                         <div className="flex items-center gap-3 sm:gap-4">
-                          <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border/70 bg-surface-secondary/40 text-muted-foreground transition-colors group-hover:border-accent/40 group-hover:text-accent dark:border-white/10 dark:bg-white/[0.02]">
+                          <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-surface-secondary text-muted-foreground transition-colors group-hover:border-accent/40 group-hover:text-accent dark:border-border dark:bg-surface-elevated">
                             <Icon className="h-3.5 w-3.5" />
                           </span>
                           <span className="font-mono text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.16em] text-foreground transition-colors group-hover:text-accent">

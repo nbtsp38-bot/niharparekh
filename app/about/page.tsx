@@ -24,7 +24,7 @@ export default function AboutPage(): ReactNode {
 
       <section className="mx-auto w-full max-w-160 px-6 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24">
         <FadeIn delay={0.5}>
-          <div className="rounded-4xl border border-foreground/5 bg-foreground/1.5 p-8 sm:p-12 dark:bg-foreground/3">
+          <div className="rounded-4xl border border-border bg-surface-primary/70 p-8 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.04)] dark:border-border dark:bg-surface-primary/80 dark:shadow-[0_16px_36px_-18px_rgba(0,0,0,0.85)] sm:p-12">
             <h1 className="font-serif text-[1.75rem] font-medium tracking-tight text-foreground sm:text-[2rem]">
               Hello! I&rsquo;m <span className="border-b border-accent/60 pb-0.5 text-foreground">Nihar</span>.
             </h1>

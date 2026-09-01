@@ -28,7 +28,7 @@ export function Hero(): ReactNode {
               <span className="block whitespace-nowrap">Motion designer</span>
             </h1>
 
-            <p className="max-w-[34ch] text-[22px] leading-[1.4] tracking-tight text-foreground/65">
+            <p className="max-w-[34ch] text-[20px] sm:text-[22px] leading-[1.4] tracking-tight text-muted-foreground">
               I turn ideas into visuals that move. Cinematic edits, motion graphics, and short-form content built to capture attention.
             </p>
 
@@ -36,7 +36,7 @@ export function Hero(): ReactNode {
           </FadeIn>
 
           <ScaleUnblur className="flex justify-stretch md:justify-end">
-            <div className="relative aspect-square w-full md:max-w-105 overflow-hidden rounded-4xl border border-foreground/8 bg-background p-1.5 shadow-sm">
+            <div className="relative aspect-square w-full md:max-w-105 overflow-hidden rounded-4xl border border-border bg-surface-primary p-1.5 shadow-sm">
               <div className="relative h-full w-full overflow-hidden rounded-[1.6rem]">
                 <PortraitMorph
                   srcA={PORTRAIT_SRC}

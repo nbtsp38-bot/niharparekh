@@ -25,11 +25,11 @@ export function HeroCtas(): ReactNode {
         >
           <Link
             href="/projects"
-            className="border border-foreground/5 focus-ring group inline-flex cursor-pointer items-center gap-2 rounded-xl bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-2xl transition-colors hover:bg-foreground/4"
+            className="border border-border focus-ring group inline-flex cursor-pointer items-center gap-2 rounded-xl bg-surface-primary px-5 py-2.5 text-sm font-medium text-foreground shadow-xs transition-colors hover:border-accent/40 hover:bg-surface-secondary"
           >
             View My Work
             <ArrowRight
-              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-accent"
               aria-hidden="true"
             />
           </Link>
