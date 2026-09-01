@@ -3,34 +3,34 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #F4F2ED;
-  --foreground: #171717;
-  --surface-primary: #FFFFFF;
-  --surface-secondary: #ECEAE5;
-  --muted: #ECEAE5;
-  --muted-foreground: #6F6D68;
-  --border: #E2DFD7;
-  --ring: #9B7738;
-  --accent: #9B7738;
-  --accent-highlight: #C8A96B;
-  --frame: #F4F2ED;
+  --background: #F3F1EB;
+  --foreground: #1A1917;
+  --surface-primary: #FAF9F5;
+  --surface-secondary: #EBE8E1;
+  --muted: #EBE8E1;
+  --muted-foreground: #6F6B63;
+  --border: #DFDBD2;
+  --ring: #9A7945;
+  --accent: #9A7945;
+  --accent-highlight: #C5A873;
+  --frame: #F3F1EB;
   --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 }
 
 .dark {
-  --background: #080808;
-  --foreground: #F2F0EA;
-  --surface-primary: #111111;
-  --surface-secondary: #171717;
-  --muted: #171717;
-  --muted-foreground: #9A9892;
-  --border: #202020;
-  --ring: #C8A96B;
-  --accent: #C8A96B;
-  --accent-highlight: #E4CA91;
-  --frame: #080808;
+  --background: #070707;
+  --foreground: #E9E6DE;
+  --surface-primary: #0D0D0D;
+  --surface-secondary: #141414;
+  --muted: #141414;
+  --muted-foreground: #96938C;
+  --border: #1C1C1C;
+  --ring: #A88A55;
+  --accent: #A88A55;
+  --accent-highlight: #D0B477;
+  --frame: #070707;
 }
 
 @theme inline {

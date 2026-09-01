@@ -48,29 +48,29 @@ function PanelCard({
   const spX = useSpring(px, { stiffness: 280, damping: 24, mass: 0.4 });
   const spY = useSpring(py, { stiffness: 280, damping: 24, mass: 0.4 });
 
-  // Physical 3D tilt (subtle: max ±4.5 deg)
-  const rotateX = useTransform(spY, [-0.5, 0.5], [4.5, -4.5]);
-  const rotateY = useTransform(spX, [-0.5, 0.5], [-4.5, 4.5]);
+  // Physical 3D tilt (subtle & restrained: max ±3.5 deg)
+  const rotateX = useTransform(spY, [-0.5, 0.5], [3.5, -3.5]);
+  const rotateY = useTransform(spX, [-0.5, 0.5], [-3.5, 3.5]);
 
   // Dotted pattern parallax shifting in opposite direction
-  const patternX = useTransform(spX, [-0.5, 0.5], [5, -5]);
-  const patternY = useTransform(spY, [-0.5, 0.5], [5, -5]);
+  const patternX = useTransform(spX, [-0.5, 0.5], [4, -4]);
+  const patternY = useTransform(spY, [-0.5, 0.5], [4, -4]);
 
   // Spotlight coordinates (px)
   const spotX = useMotionValue(70);
   const spotY = useMotionValue(90);
 
-  // Studio light reflection with champagne / bronze tint
+  // Softbox studio light reflection (soft, diffuse, warm, low opacity)
   const spotlightBg = useTransform(
     [spotX, spotY],
     ([x, y]) =>
-      `radial-gradient(150px circle at ${x}px ${y}px, color-mix(in srgb, var(--accent) 14%, transparent), transparent 75%)`
+      `radial-gradient(160px circle at ${x}px ${y}px, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%)`
   );
 
   // Smooth outward focus shift for neighboring cards
   const hoveredIndex = PANELS.findIndex((p) => p.id === hoveredId);
   const pushOffset = isOtherHovered
-    ? (index < hoveredIndex ? -4.5 : 4.5)
+    ? (index < hoveredIndex ? -4 : 4)
     : 0;
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>): void => {
@@ -98,9 +98,9 @@ function PanelCard({
     setHoveredId(null);
   };
 
-  // Extremely calm, slow micro-float (1.5px amplitude)
-  const floatDuration = 6.8 + (index % 3) * 0.9;
-  const floatDelay = index * 0.35;
+  // Extremely calm, slow micro-float (1.2px amplitude, 7.5s - 9.5s period)
+  const floatDuration = 7.5 + (index % 3) * 0.9;
+  const floatDelay = index * 0.4;
 
   return (
     <motion.div
@@ -109,18 +109,18 @@ function PanelCard({
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
       onClick={() => setHoveredId(isHovered ? null : panel.id)}
-      initial={{ opacity: 0, y: -80, filter: "blur(12px)", rotate: panel.rotate }}
+      initial={{ opacity: 0, y: -70, filter: "blur(10px)", rotate: panel.rotate }}
       animate={{
-        opacity: isOtherHovered ? 0.62 : 1,
+        opacity: isOtherHovered ? 0.6 : 1,
         y: isHovered
-          ? panel.yOffset - 7
-          : [panel.yOffset, panel.yOffset - 1.8, panel.yOffset],
+          ? panel.yOffset - 6
+          : [panel.yOffset, panel.yOffset - 1.2, panel.yOffset],
         x: pushOffset,
-        scale: isHovered ? 1.07 : isOtherHovered ? 0.98 : 1,
+        scale: isHovered ? 1.05 : isOtherHovered ? 0.98 : 1,
         filter: "blur(0px)",
         rotate: isHovered
-          ? panel.rotate * 0.25
-          : [panel.rotate - 0.2, panel.rotate + 0.2, panel.rotate - 0.2],
+          ? panel.rotate * 0.2
+          : [panel.rotate - 0.15, panel.rotate + 0.15, panel.rotate - 0.15],
       }}
       transition={{
         y: isHovered
@@ -128,11 +128,11 @@ function PanelCard({
           : { duration: floatDuration, repeat: Infinity, ease: "easeInOut", delay: floatDelay },
         rotate: isHovered
           ? { duration: 0.28, ease: EASE }
-          : { duration: floatDuration * 1.08, repeat: Infinity, ease: "easeInOut", delay: floatDelay },
+          : { duration: floatDuration * 1.05, repeat: Infinity, ease: "easeInOut", delay: floatDelay },
         scale: { duration: 0.28, ease: EASE },
         x: { duration: 0.28, ease: EASE },
         opacity: { duration: 0.28, ease: EASE },
-        filter: { duration: 0.5, ease: EASE },
+        filter: { duration: 0.45, ease: EASE },
       }}
       style={{
         zIndex: isHovered ? 30 : 10 + index,
@@ -147,25 +147,34 @@ function PanelCard({
         }}
         className={`relative flex h-full w-full flex-col overflow-hidden rounded-2xl border p-1.5 transition-all duration-300 ${
           isHovered
-            ? "border-accent/45 bg-surface-primary shadow-[0_22px_45px_-12px_rgba(0,0,0,0.85),inset_0_1px_0_color-mix(in_srgb,var(--accent-highlight)_30%,transparent)] ring-1 ring-accent/25 dark:border-accent/40 dark:bg-[#131315]"
-            : "border-border/80 bg-surface-primary shadow-[0_10px_25px_-8px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] ring-1 ring-foreground/5 dark:border-white/[0.07] dark:bg-[#0f0f11] dark:shadow-[0_12px_30px_-10px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.03)]"
+            ? "border-accent/45 bg-[#FFFFFF] shadow-[0_18px_38px_-10px_rgba(26,25,23,0.12),0_4px_12px_-3px_rgba(26,25,23,0.05),inset_0_1px_0_color-mix(in_srgb,var(--accent-highlight)_25%,transparent)] dark:border-accent/40 dark:bg-[#121212] dark:shadow-[0_24px_50px_-14px_rgba(0,0,0,0.95),0_6px_18px_-4px_rgba(0,0,0,0.6),inset_0_1px_0_color-mix(in_srgb,var(--accent-highlight)_22%,transparent)]"
+            : "border-[#DFDBD2] bg-surface-primary shadow-[0_10px_24px_-8px_rgba(26,25,23,0.07),inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-white/[0.07] dark:bg-[#0D0D0D] dark:shadow-[0_14px_34px_-10px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.04),inset_0_-1px_0_rgba(0,0,0,0.4)]"
         }`}
       >
-        {/* Studio Lighting Specular Layer */}
+        {/* Softbox Studio Lighting Specular Layer */}
         <motion.div
           animate={{ opacity: isHovered ? 1 : 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.25 }}
           className="pointer-events-none absolute inset-0 z-20 rounded-xl"
           style={{ background: spotlightBg }}
         />
 
         {/* Inner Tactile Frame */}
-        <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-foreground/[0.04] bg-surface-secondary/40 dark:border-white/[0.04] dark:bg-white/[0.015]">
-          {/* Subtle Top Inner Edge Highlight in Champagne / Bronze */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+        <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-foreground/[0.035] bg-surface-secondary/35 dark:border-white/[0.035] dark:bg-white/[0.012]">
+          {/* Subtle Top Inner Edge Highlight in Warm Accent */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
 
-          {/* Identity Detail: Subtle Corner Index Number in Accent Tone */}
-          <span className="pointer-events-none absolute top-2 left-2.5 font-mono text-[7.5px] font-medium tracking-[0.2em] text-accent/50 transition-colors duration-300 group-hover:text-accent-highlight sm:text-[8px]">
+          {/* Micro-Grain / Paper Matte Background Texture */}
+          <div 
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-[0.03] dark:opacity-[0.04] mix-blend-overlay"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            }}
+          />
+
+          {/* Identity Detail: Low-contrast Corner Index Number */}
+          <span className="pointer-events-none absolute top-2.5 left-3 font-mono text-[7px] font-normal tracking-[0.2em] text-foreground/25 transition-colors duration-300 group-hover:text-accent/80 select-none sm:text-[7.5px]">
             {panel.num}
           </span>
 
@@ -177,26 +186,26 @@ function PanelCard({
             }}
             className="pointer-events-none absolute inset-[-14px] h-[calc(100%+28px)] w-[calc(100%+28px)]"
           >
-            <DottedPattern className="h-full w-full opacity-50 transition-opacity duration-300 group-hover:opacity-70 dark:opacity-30 dark:group-hover:opacity-50" />
+            <DottedPattern className="h-full w-full opacity-45 transition-opacity duration-300 group-hover:opacity-65 dark:opacity-28 dark:group-hover:opacity-45" />
           </motion.div>
 
           {/* Centered Typography */}
-          <div className="relative z-10 flex flex-col items-center justify-center px-1.5 text-center">
-            <span className="font-mono text-[11.5px] font-medium tracking-[0.32em] text-foreground/60 transition-all duration-300 group-hover:tracking-[0.36em] group-hover:text-foreground sm:text-[12.5px]">
+          <div className="relative z-10 flex flex-col items-center justify-center px-2 text-center">
+            <span className="font-mono text-[11px] font-medium tracking-[0.32em] text-foreground/60 transition-all duration-300 group-hover:tracking-[0.36em] group-hover:text-foreground sm:text-[12px]">
               {panel.label}
             </span>
 
-            {/* Secondary Description */}
+            {/* Secondary Description (Smooth reveal only on hover) */}
             <motion.p
               initial={false}
               animate={{
-                opacity: isHovered ? 0.9 : 0,
-                y: isHovered ? 0 : 4,
+                opacity: isHovered ? 0.85 : 0,
+                y: isHovered ? 0 : 5,
                 height: isHovered ? "auto" : 0,
-                marginTop: isHovered ? 5 : 0,
+                marginTop: isHovered ? 4 : 0,
               }}
               transition={{ duration: 0.22, ease: EASE }}
-              className="overflow-hidden font-mono text-[7.5px] font-normal tracking-[0.14em] text-muted-foreground uppercase select-none sm:text-[8px]"
+              className="overflow-hidden font-mono text-[7px] font-normal tracking-[0.14em] text-muted-foreground uppercase select-none sm:text-[7.5px]"
             >
               {panel.sub}
             </motion.p>
