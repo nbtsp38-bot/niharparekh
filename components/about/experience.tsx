@@ -4,163 +4,198 @@ import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState, type ReactNode } from "react";
 
-type Entry = {
-  company: string;
+type ExperienceEntry = {
+  id: string;
+  num: string;
+  category: string;
   role: string;
   period: string;
-  slug?: string;
-  brand?: string;
+  meta: string;
+  tag?: string;
+  isCurrent?: boolean;
+  type: "freelance" | "agency" | "studio";
+  monogram: string;
 };
 
-const ENTRIES: Entry[] = [
+const EXPERIENCES: ExperienceEntry[] = [
   {
-    company: "Freelance Video Production",
+    id: "exp-1",
+    num: "01",
+    category: "FREELANCE",
     role: "Video Editor & Motion Designer",
-    period: "2022 – Present",
-    slug: "adobepremierepro",
+    period: "2024 – Present",
+    meta: "Short-Form, Cinematic Cuts & Motion Graphics",
+    tag: "20+ CLIENTS",
+    type: "freelance",
+    monogram: "NP",
   },
   {
-    company: "Creative Media Agency",
-    role: "Lead Motion Graphics Artist",
-    period: "2020 – 2022",
-    slug: "adobeaftereffects",
+    id: "exp-2",
+    num: "02",
+    category: "CREATIVE MEDIA AGENCY",
+    role: "Video Editor / Motion Designer",
+    period: "2024 – 2026",
+    meta: "Brand Campaigns, Dynamic Edits & Title Design",
+    tag: "CURRENT ROLE",
+    isCurrent: true,
+    type: "agency",
+    monogram: "CA",
   },
   {
-    company: "Social Media Channels & Brands",
+    id: "exp-3",
+    num: "03",
+    category: "DIGITAL CHANNELS & BRANDS",
     role: "Short-Form Content Specialist",
-    period: "2019 – 2020",
-    slug: "davinciresolve",
+    period: "2022 – 2024",
+    meta: "High-Retention Content, Pacing & VFX",
+    tag: "CONTRACT",
+    type: "studio",
+    monogram: "DC",
   },
 ];
 
-const COLLAPSED_COUNT = 2.5;
-const ROW_HEIGHT = 64;
-const ROW_GAP = 8;
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Experience(): ReactNode {
   const [open, setOpen] = useState(false);
-  const collapsedHeight =
-    Math.floor(COLLAPSED_COUNT) * ROW_HEIGHT +
-    Math.floor(COLLAPSED_COUNT) * ROW_GAP +
-    (COLLAPSED_COUNT % 1) * ROW_HEIGHT;
-  const hiddenCount = ENTRIES.length - Math.floor(COLLAPSED_COUNT);
+  const visibleEntries = open ? EXPERIENCES : EXPERIENCES.slice(0, 3);
+  const hasMore = EXPERIENCES.length > 3;
 
   return (
     <div className="flex flex-col gap-3">
-      <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
-        Experience
-      </h3>
-      <div
-        className={`border-foreground/5 bg-foreground/2 dark:bg-foreground/5 relative overflow-hidden rounded-4xl border px-2 pt-2 sm:px-4 sm:pt-4 ${
-          open ? "pb-2 sm:pb-4" : "pb-0"
-        }`}
-      >
-        <motion.div
-          className="relative"
-          initial={false}
-          animate={{
-            height: open ? "auto" : collapsedHeight,
-          }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          style={{ overflow: "hidden" }}
-        >
-          <ul className="flex flex-col gap-2">
-            {ENTRIES.map((entry) => (
-              <li
-                key={`${entry.company}-${entry.period}`}
-                className="bg-background border-foreground/5 flex items-center gap-4 rounded-3xl border p-2"
-                style={{ minHeight: ROW_HEIGHT }}
-              >
-                <CompanyLogo entry={entry} />
-                <div className="flex min-w-0 flex-col">
-                  <span className="text-foreground text-[17px] font-semibold tracking-tight sm:text-[18px]">
-                    {entry.company}
-                  </span>
-                  <span className="text-foreground/65 mt-0.5 text-[14px] tracking-tight sm:text-[15px]">
-                    {entry.role}
-                    <span className="text-foreground/30 mx-2">•</span>
-                    <span className="text-foreground/55">{entry.period}</span>
-                  </span>
-                </div>
-              </li>
+      {/* Header */}
+      <div className="flex items-center justify-between px-1">
+        <h3 className="flex items-center gap-2 font-mono text-[11.5px] font-semibold uppercase tracking-[0.25em] text-accent">
+          <span>//</span> Experience
+        </h3>
+        <span className="font-mono text-[10px] tracking-wider text-muted-foreground/60">
+          2022 — 2026
+        </span>
+      </div>
+
+      {/* Main Container */}
+      <div className="relative overflow-hidden rounded-3xl border border-border/70 bg-surface-primary/60 p-5 backdrop-blur-sm shadow-[0_10px_30px_-15px_rgba(0,0,0,0.04)] dark:border-white/[0.06] dark:bg-[#0D0D0D]/80 dark:shadow-[0_16px_36px_-18px_rgba(0,0,0,0.85)] sm:p-7">
+        {/* Subtle Vertical Timeline Guide Line */}
+        <div 
+          aria-hidden="true" 
+          className="pointer-events-none absolute bottom-8 left-[31px] top-8 w-[1px] bg-gradient-to-b from-accent/40 via-border/80 to-transparent dark:from-accent/40 dark:via-white/[0.08] sm:left-[39px]"
+        />
+
+        <div className="relative flex flex-col gap-6 sm:gap-7">
+          <AnimatePresence initial={false}>
+            {visibleEntries.map((entry, index) => (
+              <ExperienceItem key={entry.id} entry={entry} index={index} />
             ))}
-          </ul>
-        </motion.div>
+          </AnimatePresence>
+        </div>
 
-        <AnimatePresence>
-          {!open && (
-            <motion.div
-              key="fade"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0"
-              style={{
-                height: ROW_HEIGHT,
-                backdropFilter: "blur(10px)",
-                WebkitBackdropFilter: "blur(10px)",
-                maskImage:
-                  "linear-gradient(to bottom, transparent 0%, black 80%)",
-                WebkitMaskImage:
-                  "linear-gradient(to bottom, transparent 0%, black 80%)",
-              }}
-            />
-          )}
-        </AnimatePresence>
-
-        {hiddenCount > 0 && (
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            className={`focus-ring text-foreground flex w-full cursor-pointer items-center justify-center gap-1.5 bg-transparent text-[15px] font-medium tracking-tight ${
-              open
-                ? "relative mt-4"
-                : "absolute inset-x-0 bottom-0 z-10 py-3 sm:py-4"
-            }`}
-          >
-            {open ? "Show less" : `Show ${hiddenCount} more`}
-            <motion.span
-              animate={{ rotate: open ? 180 : 0 }}
-              transition={{ duration: 0.25 }}
-              className="inline-flex"
+        {/* Expand / Collapse Control */}
+        {hasMore && (
+          <div className="mt-6 flex justify-center border-t border-border/50 pt-4 dark:border-white/[0.05]">
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              className="group inline-flex cursor-pointer items-center gap-2 font-mono text-[10.5px] font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
             >
-              <ChevronDown className="h-4 w-4" aria-hidden="true" />
-            </motion.span>
-          </button>
+              <span>{open ? "SHOW LESS" : "VIEW ALL EXPERIENCE"}</span>
+              <motion.span
+                animate={{ rotate: open ? 180 : 0 }}
+                transition={{ duration: 0.25, ease: EASE }}
+                className="inline-flex text-accent"
+              >
+                <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
+              </motion.span>
+            </button>
+          </div>
         )}
       </div>
     </div>
   );
 }
 
-function CompanyLogo({ entry }: { entry: Entry }): ReactNode {
-  const initials = entry.company.charAt(0);
+function ExperienceItem({
+  entry,
+  index: _index,
+}: {
+  entry: ExperienceEntry;
+  index: number;
+}): ReactNode {
   return (
-    <span
-      className="ring-foreground/8 inline-flex h-12 w-12 shrink-0 items-center justify-center bg-white ring-1 dark:ring-white/10"
-      aria-hidden="true"
-      style={{
-        borderRadius: 14,
-        ...(entry.slug ? {} : { backgroundColor: entry.brand }),
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.35, ease: EASE }}
+      whileHover={{ x: 5 }}
+      className="group relative flex items-start gap-4 sm:gap-5"
     >
-      {entry.slug ? (
-        <img
-          src={`https://cdn.simpleicons.org/${entry.slug}`}
-          alt=""
-          width={24}
-          height={24}
-          className="h-6 w-6"
-          draggable={false}
-        />
-      ) : (
-        <span className="text-[18px] font-semibold tracking-tight text-white">
-          {initials}
+      {/* Timeline Node Marker */}
+      <div className="relative z-10 flex shrink-0 items-center justify-center pt-0.5">
+        <span
+          className={`flex h-6 w-6 items-center justify-center rounded-full border font-mono text-[8px] font-medium tracking-wider transition-all duration-300 sm:h-7 sm:w-7 sm:text-[9px] ${
+            entry.isCurrent
+              ? "border-accent/90 bg-surface-primary text-accent shadow-[0_0_12px_-2px_rgba(168,138,85,0.4)] ring-3 ring-accent/15 dark:bg-[#111111]"
+              : "border-border/90 bg-surface-primary text-muted-foreground/70 group-hover:border-accent/70 group-hover:text-accent dark:border-white/10 dark:bg-[#111111]"
+          }`}
+        >
+          {entry.num}
         </span>
-      )}
-    </span>
+      </div>
+
+      {/* Monogram / Brand Icon */}
+      <div className="relative z-10 hidden shrink-0 sm:flex">
+        <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-border/80 bg-surface-secondary/50 font-mono text-[10.5px] font-semibold tracking-wider text-foreground/80 shadow-xs transition-all duration-300 group-hover:border-accent/40 group-hover:bg-surface-secondary dark:border-white/[0.08] dark:bg-white/[0.02] dark:group-hover:border-accent/35 dark:group-hover:bg-white/[0.04]">
+          {entry.type === "freelance" ? (
+            <span className="text-accent">{entry.monogram}</span>
+          ) : (
+            <span>{entry.monogram}</span>
+          )}
+        </span>
+      </div>
+
+      {/* Content Block */}
+      <div className="flex min-w-0 flex-1 flex-col pt-0.5">
+        {/* Category Header & Tag */}
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="font-mono text-[12px] font-semibold uppercase tracking-[0.16em] text-foreground transition-colors group-hover:text-foreground sm:text-[13px]">
+            {entry.category}
+          </span>
+
+          {entry.tag && (
+            <span
+              className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 font-mono text-[7.5px] font-medium uppercase tracking-widest sm:text-[8px] ${
+                entry.isCurrent
+                  ? "bg-accent/10 text-accent ring-1 ring-accent/30"
+                  : "bg-foreground/[0.04] text-muted-foreground ring-1 ring-border/80 dark:bg-white/[0.03] dark:ring-white/[0.08]"
+              }`}
+            >
+              {entry.isCurrent && (
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+                </span>
+              )}
+              {entry.tag}
+            </span>
+          )}
+        </div>
+
+        {/* Role */}
+        <span className="mt-1 text-[14.5px] font-medium tracking-tight text-foreground/90 sm:text-[15.5px]">
+          {entry.role}
+        </span>
+
+        {/* Meta / Supporting Details & Dates */}
+        <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12px] tracking-tight text-muted-foreground sm:text-[13px]">
+          <span className="text-muted-foreground/85">{entry.meta}</span>
+          <span className="text-muted-foreground/30 select-none">•</span>
+          <span className="font-mono text-[10.5px] tracking-wider text-foreground/60 sm:text-[11px]">
+            {entry.period}
+          </span>
+        </div>
+      </div>
+    </motion.div>
   );
 }
+
