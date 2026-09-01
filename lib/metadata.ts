@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Nihar — Video Editor & Motion Designer",
+  name: "Nihar Parekh",
   description:
-    "Personal portfolio of Nihar. Specializing in cinematic editing, motion graphics, short-form reels, and visual storytelling.",
+    "Personal portfolio of Nihar Parekh. Specializing in cinematic editing, motion graphics, short-form reels, and visual storytelling.",
   url: "https://niharparekh.com",
   ogImage: "/og-image.png",
   creator: "@nihharise",
   authors: [
     {
-      name: "Nihar",
+      name: "Nihar Parekh",
       url: "mailto:niharparekh14@gmail.com",
     },
   ],
   keywords: [
+    "Nihar Parekh",
     "Nihar",
     "Video Editor",
     "Motion Designer",
@@ -89,12 +90,19 @@ export function createMetadata({
   image,
   noIndex = false,
 }: {
-  title?: string;
+  title?: Metadata["title"];
   description?: string;
   path?: string;
   image?: string;
   noIndex?: boolean;
 }): Metadata {
+  const ogTitle =
+    typeof title === "string"
+      ? title
+      : typeof title === "object" && title !== null && "absolute" in title && typeof title.absolute === "string"
+        ? title.absolute
+        : siteConfig.name;
+
   const url = `${siteConfig.url}${path}`;
   const ogImage = image ?? siteConfig.ogImage;
 
@@ -105,7 +113,7 @@ export function createMetadata({
       canonical: path,
     },
     openGraph: {
-      title: title ?? siteConfig.name,
+      title: ogTitle,
       description: description ?? siteConfig.description,
       url,
       images: [
@@ -113,12 +121,12 @@ export function createMetadata({
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: title ?? siteConfig.name,
+          alt: typeof ogTitle === "string" ? ogTitle : siteConfig.name,
         },
       ],
     },
     twitter: {
-      title: title ?? siteConfig.name,
+      title: ogTitle,
       description: description ?? siteConfig.description,
       images: [ogImage],
     },
