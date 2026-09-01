@@ -87,7 +87,7 @@ export function ContactCard(): ReactNode {
               background: useTransform(
                 [spotX, spotY],
                 ([x, y]) =>
-                  `radial-gradient(650px circle at ${x} ${y}, color-mix(in srgb, var(--accent) 14%, transparent), transparent 75%)`
+                  `radial-gradient(650px circle at ${x} ${y}, color-mix(in srgb, var(--accent-sand) 12%, transparent), color-mix(in srgb, var(--accent-terracotta) 4%, transparent) 40%, transparent 75%)`
               ),
             }}
           />

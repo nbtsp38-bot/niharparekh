@@ -3,46 +3,84 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #F1EEE7;
-  --background-deep: #E9E5DC;
-  --foreground: #171614;
-  --surface-primary: #F8F6F0;
-  --surface-secondary: #ECE8DF;
+  /* Backgrounds — warm limestone / natural paper */
+  --background: #F0ECE5;
+  --background-deep: #E4DED4;
+
+  /* Surfaces */
+  --surface-primary: #F7F4EE;
+  --surface-secondary: #EDE8E0;
   --surface-elevated: #FFFFFF;
-  --muted: #ECE8DF;
-  --muted-foreground: #625E57;
-  --text-muted: #8D887F;
-  --border: rgba(23, 22, 20, 0.10);
-  --border-strong: rgba(23, 22, 20, 0.16);
-  --ring: #9A7443;
-  --accent: #9A7443;
-  --accent-light: #B99460;
-  --accent-highlight: #B99460;
-  --accent-soft: rgba(154, 116, 67, 0.14);
-  --frame: #F1EEE7;
+  --surface-warm: #E9E2D9;
+
+  /* Legacy compat */
+  --muted: #EDE8E0;
+  --frame: #F0ECE5;
+
+  /* Text — warm charcoal, not pure black */
+  --foreground: #1C1B18;
+  --muted-foreground: #655F58;
+  --text-muted: #8C867D;
+
+  /* Borders — low-opacity warm charcoal */
+  --border: rgba(28, 27, 24, 0.10);
+  --border-strong: rgba(28, 27, 24, 0.16);
+
+  /* Accent family — photography-derived */
+  --accent: #9D7658;           /* warm sand — primary */
+  --accent-light: #B89070;     /* lighter sand highlight */
+  --accent-highlight: #B89070;
+  --accent-soft: rgba(157, 118, 88, 0.13);
+  --accent-sand: #9D7658;
+  --accent-terracotta: #9E6650;
+  --accent-olive: #4E5A42;
+  --accent-blue: #8799A6;
+
+  /* Ring */
+  --ring: #9D7658;
+
+  /* Font stacks */
   --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 }
 
 .dark {
-  --background: #0B0A09;
-  --background-deep: #070706;
-  --foreground: #F1EEE7;
-  --surface-primary: #121110;
-  --surface-secondary: #181715;
-  --surface-elevated: #1D1B18;
-  --muted: #181715;
-  --muted-foreground: #A7A29A;
-  --text-muted: #716D66;
-  --border: rgba(241, 238, 231, 0.10);
-  --border-strong: rgba(241, 238, 231, 0.16);
-  --ring: #B08A57;
-  --accent: #B08A57;
-  --accent-light: #D1B17A;
-  --accent-highlight: #D1B17A;
-  --accent-soft: rgba(176, 138, 87, 0.16);
-  --frame: #0B0A09;
+  /* Backgrounds — layered warm charcoal */
+  --background: #080807;
+  --background-deep: #050505;
+
+  /* Surfaces */
+  --surface-primary: #141412;
+  --surface-secondary: #1D1C18;
+  --surface-elevated: #25231E;
+  --surface-warm: #2E2B25;
+
+  /* Legacy compat */
+  --muted: #1D1C18;
+  --frame: #080807;
+
+  /* Text — warm ivory, not pure white */
+  --foreground: #F1ECE5;
+  --muted-foreground: #B8B0A7;
+  --text-muted: #807A72;
+
+  /* Borders — low-opacity warm ivory */
+  --border: rgba(241, 236, 229, 0.10);
+  --border-strong: rgba(241, 236, 229, 0.16);
+
+  /* Accent family — photography-derived */
+  --accent: #B28A68;           /* warm sand — primary */
+  --accent-light: #C9A485;     /* lighter sand highlight */
+  --accent-highlight: #C9A485;
+  --accent-soft: rgba(178, 138, 104, 0.14);
+  --accent-sand: #B28A68;
+  --accent-terracotta: #A96F57;
+  --accent-olive: #556145;
+  --accent-blue: #A8B7C3;
+
+  /* Ring */
+  --ring: #B28A68;
 }
 
 @theme inline {
@@ -52,6 +90,7 @@
   --color-surface-primary: var(--surface-primary);
   --color-surface-secondary: var(--surface-secondary);
   --color-surface-elevated: var(--surface-elevated);
+  --color-surface-warm: var(--surface-warm);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-text-muted: var(--text-muted);
@@ -62,6 +101,10 @@
   --color-accent-light: var(--accent-light);
   --color-accent-highlight: var(--accent-highlight);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-sand: var(--accent-sand);
+  --color-accent-terracotta: var(--accent-terracotta);
+  --color-accent-olive: var(--accent-olive);
+  --color-accent-blue: var(--accent-blue);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
@@ -207,7 +250,7 @@ html[data-theme-anim="1"]::view-transition-new(root) {
 
 .project-card {
   transform: translateY(0);
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  box-shadow: 0 1px 2px rgba(28, 27, 24, 0.05);
   transition:
     transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -217,23 +260,23 @@ html[data-theme-anim="1"]::view-transition-new(root) {
 
 .project-card:hover {
   transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-color: color-mix(in srgb, var(--accent-sand) 35%, var(--border));
   box-shadow:
-    0 10px 24px -8px rgb(0 0 0 / 0.1),
-    0 4px 8px -4px rgb(0 0 0 / 0.05);
+    0 10px 28px -8px rgba(28, 27, 24, 0.12),
+    0 4px 8px -4px rgba(28, 27, 24, 0.06);
 }
 
 .dark .project-card {
   background-color: var(--surface-primary);
   border-color: var(--border);
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.6);
+  box-shadow: 0 1px 3px rgba(5, 5, 5, 0.7);
 }
 
 .dark .project-card:hover {
-  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  border-color: color-mix(in srgb, var(--accent-sand) 38%, var(--border));
   box-shadow:
-    0 14px 28px -8px rgb(0 0 0 / 0.8),
-    0 4px 10px -4px rgb(0 0 0 / 0.5);
+    0 14px 32px -8px rgba(5, 5, 5, 0.85),
+    0 4px 12px -4px rgba(5, 5, 5, 0.55);
 }
 
 .project-card__image {
