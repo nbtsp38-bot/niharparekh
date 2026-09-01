@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Backgrounds — warm limestone / ivory natural paper */
+  /* Backgrounds — warm limestone / natural paper */
   --background: #EEE9E1;
   --background-secondary: #E3DDD3;
   --background-deep: #E3DDD3;
@@ -27,17 +27,17 @@
   --muted-foreground: #625D55;
   --text-muted: #8B8378;
 
-  /* Borders */
-  --border: rgba(28, 26, 23, 0.10);
-  --border-strong: rgba(28, 26, 23, 0.17);
+  /* Borders — soft, low opacity */
+  --border: rgba(28, 26, 23, 0.08);
+  --border-strong: rgba(28, 26, 23, 0.14);
 
-  /* Photography-inspired natural accents */
+  /* Photography-inspired muted natural accents */
   --sand: #9A7454;
   --accent: #9A7454;
   --accent-sand: #9A7454;
   --accent-light: #B89273;
   --accent-highlight: #B89273;
-  --accent-soft: rgba(154, 116, 84, 0.13);
+  --accent-soft: rgba(154, 116, 84, 0.08);
 
   --terracotta: #9C634D;
   --accent-terracotta: #9C634D;
@@ -58,41 +58,41 @@
 }
 
 .dark {
-  /* Backgrounds — warm layered cinematic charcoal */
+  /* Backgrounds — deep, moody warm graphite */
   --background: #080807;
-  --background-secondary: #10100E;
+  --background-secondary: #0D0D0B;
   --background-deep: #050505;
 
-  /* Surfaces */
-  --surface: #171612;
-  --surface-primary: #171612;
-  --surface-secondary: #211F1A;
-  --surface-elevated: #211F1A;
-  --surface-soft: #29261F;
-  --surface-warm: #29261F;
+  /* Surfaces — dark, understated warm charcoal */
+  --surface: #141310;
+  --surface-primary: #141310;
+  --surface-secondary: #1B1915;
+  --surface-elevated: #1B1915;
+  --surface-soft: #211F1A;
+  --surface-warm: #211F1A;
 
   /* Legacy & system mappings */
-  --muted: #211F1A;
+  --muted: #1B1915;
   --frame: #080807;
 
-  /* Text — warm ivory, not pure white */
+  /* Text — warm ivory, controlled contrast */
   --text-primary: #F0E9DE;
   --foreground: #F0E9DE;
   --text-secondary: #B4AA9D;
   --muted-foreground: #B4AA9D;
   --text-muted: #81786D;
 
-  /* Borders */
-  --border: rgba(240, 233, 222, 0.10);
-  --border-strong: rgba(240, 233, 222, 0.17);
+  /* Borders — understated tactile edges */
+  --border: rgba(240, 233, 222, 0.08);
+  --border-strong: rgba(240, 233, 222, 0.14);
 
-  /* Photography-inspired natural accents */
+  /* Photography-inspired desaturated accents */
   --sand: #B28A68;
   --accent: #B28A68;
   --accent-sand: #B28A68;
   --accent-light: #CBA787;
   --accent-highlight: #CBA787;
-  --accent-soft: rgba(178, 138, 104, 0.14);
+  --accent-soft: rgba(178, 138, 104, 0.08);
 
   --terracotta: #A96F57;
   --accent-terracotta: #A96F57;

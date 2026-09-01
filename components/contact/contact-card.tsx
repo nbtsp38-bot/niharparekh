@@ -82,12 +82,12 @@ export function ContactCard(): ReactNode {
           {/* Subtle Atmospheric Studio Light Follower */}
           <motion.div
             aria-hidden="true"
-            className="pointer-events-none absolute -inset-full opacity-60 transition-opacity duration-500 dark:opacity-35"
+            className="pointer-events-none absolute -inset-full opacity-30 transition-opacity duration-500 dark:opacity-20"
             style={{
               background: useTransform(
                 [spotX, spotY],
                 ([x, y]) =>
-                  `radial-gradient(650px circle at ${x} ${y}, color-mix(in srgb, var(--accent-sand) 12%, transparent), color-mix(in srgb, var(--accent-terracotta) 4%, transparent) 40%, transparent 75%)`
+                  `radial-gradient(500px circle at ${x} ${y}, rgba(178, 138, 104, 0.035), rgba(169, 111, 87, 0.018) 40%, transparent 70%)`
               ),
             }}
           />

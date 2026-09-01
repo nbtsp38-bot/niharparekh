@@ -60,11 +60,10 @@ function PanelCard({
   const spotX = useMotionValue(70);
   const spotY = useMotionValue(90);
 
-  // Softbox studio light reflection (soft, diffuse, warm, low opacity)
   const spotlightBg = useTransform(
     [spotX, spotY],
     ([x, y]) =>
-      `radial-gradient(160px circle at ${x}px ${y}px, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%)`
+      `radial-gradient(130px circle at ${x}px ${y}px, rgba(178, 138, 104, 0.05), transparent 70%)`
   );
 
   // Smooth outward focus shift for neighboring cards
