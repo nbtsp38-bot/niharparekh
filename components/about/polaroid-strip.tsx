@@ -1,23 +1,24 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { useRef, useSyncExternalStore, type ReactNode } from "react";
+import { useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 
 import { DottedPattern } from "@/components/ui/dotted-pattern";
 
 type Panel = {
   id: string;
   label: string;
+  sub: string;
   rotate: number;
 };
 
 const PANELS: Panel[] = [
-  { id: "edit", label: "EDIT", rotate: -8 },
-  { id: "motion", label: "MOTION", rotate: 6 },
-  { id: "vfx", label: "VFX", rotate: -4 },
-  { id: "color", label: "COLOR", rotate: 7 },
-  { id: "type", label: "TYPE", rotate: -6 },
-  { id: "sound", label: "SOUND", rotate: 5 },
+  { id: "edit", label: "EDIT", sub: "Pacing • Cuts • Rhythm", rotate: -8 },
+  { id: "motion", label: "MOTION", sub: "Animation • Transitions", rotate: 6 },
+  { id: "vfx", label: "VFX", sub: "Compositing • Effects", rotate: -4 },
+  { id: "color", label: "COLOR", sub: "Grade • Mood • Tone", rotate: 7 },
+  { id: "type", label: "TYPE", sub: "Typography • Kinetic Type", rotate: -6 },
+  { id: "sound", label: "SOUND", sub: "SFX • Music • Sync", rotate: 5 },
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -25,72 +26,181 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 function PanelCard({
   panel,
   index,
+  hoveredId,
+  setHoveredId,
 }: {
   panel: Panel;
   index: number;
+  hoveredId: string | null;
+  setHoveredId: (id: string | null) => void;
 }): ReactNode {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 220, damping: 18, mass: 0.6 });
-  const sy = useSpring(my, { stiffness: 220, damping: 18, mass: 0.6 });
-  const tx = useTransform(sx, (v) => `${v}px`);
-  const ty = useTransform(sy, (v) => `${v}px`);
+  const isHovered = hoveredId === panel.id;
+  const isAnyHovered = hoveredId !== null;
+  const isOtherHovered = isAnyHovered && !isHovered;
 
-  const handleMove = (e: React.PointerEvent<HTMLDivElement>): void => {
-    const el = ref.current;
+  const cardRef = useRef<HTMLDivElement | null>(null);
+
+  // Pointer position for 3D tilt & parallax
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const spX = useSpring(px, { stiffness: 260, damping: 20, mass: 0.5 });
+  const spY = useSpring(py, { stiffness: 260, damping: 20, mass: 0.5 });
+
+  // 3D tilt
+  const rotateX = useTransform(spY, [-0.5, 0.5], [7, -7]);
+  const rotateY = useTransform(spX, [-0.5, 0.5], [-7, 7]);
+
+  // Internal dotted pattern parallax
+  const patternX = useTransform(spX, [-0.5, 0.5], [-6, 6]);
+  const patternY = useTransform(spY, [-0.5, 0.5], [-6, 6]);
+
+  // Spotlight coordinates (px)
+  const spotX = useMotionValue(70);
+  const spotY = useMotionValue(90);
+
+  // Push distance for other cards when one is hovered
+  const hoveredIndex = PANELS.findIndex((p) => p.id === hoveredId);
+  const pushOffset = isOtherHovered
+    ? (index < hoveredIndex ? -5 : 5)
+    : 0;
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>): void => {
+    const el = cardRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = e.clientX - cx;
-    const dy = e.clientY - cy;
-    const max = 16;
-    const k = 0.22;
-    mx.set(Math.max(-max, Math.min(max, dx * k)));
-    my.set(Math.max(-max, Math.min(max, dy * k)));
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    px.set(x);
+    py.set(y);
+    spotX.set(e.clientX - rect.left);
+    spotY.set(e.clientY - rect.top);
   };
 
-  const handleLeave = (): void => {
-    mx.set(0);
-    my.set(0);
+  const handlePointerEnter = (): void => {
+    setHoveredId(panel.id);
   };
+
+  const handlePointerLeave = (): void => {
+    px.set(0);
+    py.set(0);
+    setHoveredId(null);
+  };
+
+  // Idle float animation timing varied per card
+  const floatDuration = 4.2 + (index % 3) * 0.8;
+  const floatDelay = index * 0.25;
 
   return (
     <motion.div
-      ref={ref}
-      onPointerMove={handleMove}
-      onPointerLeave={handleLeave}
-      initial={{ opacity: 0, y: -120, filter: "blur(18px)", rotate: panel.rotate }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)", rotate: panel.rotate }}
-      whileHover={{
-        scale: 1.07,
-        zIndex: 20,
-        transition: { duration: 0.25, ease: EASE },
+      ref={cardRef}
+      onPointerMove={handlePointerMove}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+      onClick={() => setHoveredId(isHovered ? null : panel.id)}
+      initial={{ opacity: 0, y: -100, filter: "blur(14px)", rotate: panel.rotate }}
+      animate={{
+        opacity: isOtherHovered ? 0.68 : 1,
+        y: isHovered ? -8 : [0, -3, 0],
+        x: pushOffset,
+        scale: isHovered ? 1.08 : isOtherHovered ? 0.97 : 1,
+        filter: "blur(0px)",
+        rotate: isHovered
+          ? panel.rotate * 0.3
+          : [panel.rotate - 0.35, panel.rotate + 0.35, panel.rotate - 0.35],
       }}
       transition={{
-        duration: 0.9,
-        delay: 0.05 + index * 0.08,
-        ease: EASE,
+        y: isHovered
+          ? { duration: 0.25, ease: EASE }
+          : { duration: floatDuration, repeat: Infinity, ease: "easeInOut", delay: floatDelay },
+        rotate: isHovered
+          ? { duration: 0.25, ease: EASE }
+          : { duration: floatDuration * 1.1, repeat: Infinity, ease: "easeInOut", delay: floatDelay },
+        scale: { duration: 0.25, ease: EASE },
+        x: { duration: 0.25, ease: EASE },
+        opacity: { duration: 0.25, ease: EASE },
+        filter: { duration: 0.6, ease: EASE },
       }}
       style={{
-        x: tx,
-        y: ty,
-        rotate: panel.rotate,
+        zIndex: isHovered ? 30 : 10 + index,
+        transformPerspective: 800,
       }}
-      className="group relative aspect-[3/4] w-[clamp(6rem,11vw,9rem)] shrink-0 overflow-hidden rounded-2xl border-6 border-neutral-300/40 bg-white p-1.5 shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-white/15 dark:bg-neutral-900 select-none"
+      className="group relative aspect-[3/4] w-[clamp(6.2rem,11.5vw,9.2rem)] shrink-0 cursor-pointer select-none"
     >
-      <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl bg-foreground/[0.03] dark:bg-white/[0.02]">
-        <DottedPattern className="absolute inset-0 h-full w-full opacity-60 dark:opacity-40" />
-        <span className="relative z-10 font-mono text-[11px] font-medium tracking-[0.25em] text-foreground/45 transition-colors duration-250 group-hover:text-foreground sm:text-[12px]">
-          {panel.label}
-        </span>
-      </div>
+      <motion.div
+        style={{
+          rotateX: isHovered ? rotateX : 0,
+          rotateY: isHovered ? rotateY : 0,
+        }}
+        className={`relative flex h-full w-full flex-col overflow-hidden rounded-2xl border-4 sm:border-5 p-1.5 transition-all duration-300 ${
+          isHovered
+            ? "border-neutral-400/80 bg-neutral-100 shadow-2xl ring-1 ring-foreground/10 dark:border-white/30 dark:bg-neutral-900/95"
+            : "border-neutral-300/40 bg-white/90 shadow-md ring-1 ring-foreground/5 dark:border-white/10 dark:bg-neutral-950/80"
+        }`}
+      >
+        {/* Subtle Specular / Cursor Light Overlay on Hover */}
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="pointer-events-none absolute inset-0 z-20 rounded-xl"
+            style={{
+              background: useTransform(
+                [spotX, spotY],
+                ([x, y]) =>
+                  `radial-gradient(130px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.12), transparent 70%)`
+              ),
+            }}
+          />
+        )}
+
+        {/* Inner Card Frame */}
+        <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-foreground/5 bg-foreground/[0.02] dark:border-white/[0.04] dark:bg-white/[0.02]">
+          {/* Subtle Top Specular Bevel Edge */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-foreground/15 to-transparent dark:via-white/20" />
+
+          {/* Dotted Pattern with Subtle Cursor Parallax */}
+          <motion.div
+            style={{
+              x: isHovered ? patternX : 0,
+              y: isHovered ? patternY : 0,
+            }}
+            className="pointer-events-none absolute inset-[-12px] h-[calc(100%+24px)] w-[calc(100%+24px)]"
+          >
+            <DottedPattern className="h-full w-full opacity-55 transition-opacity duration-300 group-hover:opacity-75 dark:opacity-35 dark:group-hover:opacity-55" />
+          </motion.div>
+
+          {/* Centered Typography Container */}
+          <div className="relative z-10 flex flex-col items-center justify-center px-1.5 text-center">
+            <span className="font-mono text-[11.5px] font-semibold tracking-[0.28em] text-foreground/55 transition-colors duration-250 group-hover:text-foreground sm:text-[12.5px]">
+              {panel.label}
+            </span>
+
+            {/* Secondary Descriptive Line (Reveals smoothly on hover) */}
+            <motion.p
+              initial={false}
+              animate={{
+                opacity: isHovered ? 0.9 : 0,
+                y: isHovered ? 0 : 5,
+                height: isHovered ? "auto" : 0,
+                marginTop: isHovered ? 5 : 0,
+              }}
+              transition={{ duration: 0.22, ease: EASE }}
+              className="overflow-hidden font-mono text-[8px] font-normal tracking-[0.12em] text-foreground/60 uppercase dark:text-foreground/55 sm:text-[8.5px]"
+            >
+              {panel.sub}
+            </motion.p>
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
 
 export function PolaroidStrip(): ReactNode {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -102,11 +212,21 @@ export function PolaroidStrip(): ReactNode {
   }
 
   return (
-    <div className="flex flex-wrap w-full items-start justify-center gap-1 px-4 sm:gap-1.5 sm:px-8">
+    <div
+      onMouseLeave={() => setHoveredId(null)}
+      className="flex w-full flex-wrap items-start justify-center gap-1.5 px-4 sm:gap-2 sm:px-8"
+    >
       {PANELS.map((panel, i) => (
-        <PanelCard key={panel.id} panel={panel} index={i} />
+        <PanelCard
+          key={panel.id}
+          panel={panel}
+          index={i}
+          hoveredId={hoveredId}
+          setHoveredId={setHoveredId}
+        />
       ))}
     </div>
   );
 }
+
 
