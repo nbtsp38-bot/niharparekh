@@ -58,33 +58,33 @@
 }
 
 .dark {
-  /* Backgrounds — deep, moody warm graphite */
-  --background: #080807;
-  --background-secondary: #0D0D0B;
-  --background-deep: #050505;
+  /* Backgrounds — rich, warm cinematic charcoal (not flat black) */
+  --background: #0D0C0A;
+  --background-secondary: #12110F;
+  --background-deep: #090908;
 
-  /* Surfaces — dark, understated warm charcoal */
-  --surface: #141310;
-  --surface-primary: #141310;
-  --surface-secondary: #1B1915;
-  --surface-elevated: #1B1915;
-  --surface-soft: #211F1A;
-  --surface-warm: #211F1A;
+  /* Surfaces — clearly elevated warm charcoal with visible depth */
+  --surface: #171612;
+  --surface-primary: #171612;
+  --surface-secondary: #181613;
+  --surface-elevated: #1D1A15;
+  --surface-soft: #1D1A15;
+  --surface-warm: #221E19;
 
   /* Legacy & system mappings */
-  --muted: #1B1915;
-  --frame: #080807;
+  --muted: #181613;
+  --frame: #0D0C0A;
 
-  /* Text — warm ivory, controlled contrast */
+  /* Text — warm ivory, crisp readable hierarchy */
   --text-primary: #F0E9DE;
   --foreground: #F0E9DE;
   --text-secondary: #B4AA9D;
   --muted-foreground: #B4AA9D;
   --text-muted: #81786D;
 
-  /* Borders — understated tactile edges */
-  --border: rgba(240, 233, 222, 0.08);
-  --border-strong: rgba(240, 233, 222, 0.14);
+  /* Borders — visible, refined tactile edges */
+  --border: rgba(240, 233, 222, 0.12);
+  --border-strong: rgba(240, 233, 222, 0.18);
 
   /* Photography-inspired desaturated accents */
   --sand: #B28A68;
@@ -92,7 +92,7 @@
   --accent-sand: #B28A68;
   --accent-light: #CBA787;
   --accent-highlight: #CBA787;
-  --accent-soft: rgba(178, 138, 104, 0.08);
+  --accent-soft: rgba(178, 138, 104, 0.10);
 
   --terracotta: #A96F57;
   --accent-terracotta: #A96F57;
