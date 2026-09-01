@@ -140,11 +140,11 @@ const TOOLS: SoftwareTool[] = [
       <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <defs>
           <linearGradient id="agyStackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#E2E2DF" />
-            <stop offset="100%" stopColor="#C4C4C0" />
+            <stop offset="0%" stopColor="#CBA787" />
+            <stop offset="100%" stopColor="#B28A68" />
           </linearGradient>
         </defs>
-        <rect width="24" height="24" rx="5" fill="#121212" />
+        <rect width="24" height="24" rx="5" fill="#171612" />
         <path d="M12 4L18 12L12 20L6 12L12 4Z" stroke="url(#agyStackGrad)" strokeWidth="1.75" fill="none" />
         <circle cx="12" cy="12" r="2.5" fill="url(#agyStackGrad)" />
       </svg>
