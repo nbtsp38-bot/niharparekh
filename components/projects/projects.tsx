@@ -186,7 +186,7 @@ export function Projects({
               onClick={() => setFilter("all")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "all"
-                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent-sand/45"
+                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent/45"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -196,7 +196,7 @@ export function Projects({
               onClick={() => setFilter("motion")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "motion"
-                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent-sand/45"
+                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent/45"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -206,7 +206,7 @@ export function Projects({
               onClick={() => setFilter("short-form")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "short-form"
-                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent-sand/45"
+                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent/45"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -216,7 +216,7 @@ export function Projects({
               onClick={() => setFilter("promo")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "promo"
-                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent-sand/45"
+                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent/45"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >

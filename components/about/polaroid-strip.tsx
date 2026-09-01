@@ -63,7 +63,7 @@ function PanelCard({
   const spotlightBg = useTransform(
     [spotX, spotY],
     ([x, y]) =>
-      `radial-gradient(130px circle at ${x}px ${y}px, rgba(178, 138, 104, 0.05), transparent 70%)`
+      `radial-gradient(130px circle at ${x}px ${y}px, rgba(227, 227, 225, 0.08), transparent 70%)`
   );
 
   // Smooth outward focus shift for neighboring cards

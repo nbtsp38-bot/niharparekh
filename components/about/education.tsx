@@ -168,8 +168,8 @@ function JourneyEntry({
         <span
           className={`flex h-6 w-6 items-center justify-center rounded-full border font-mono text-[8px] font-medium tracking-wider transition-all duration-300 sm:h-7 sm:w-7 sm:text-[9px] ${
             item.isCurrent
-              ? "border-accent-olive bg-surface-primary text-accent-olive shadow-[0_0_12px_-2px_rgba(85,97,69,0.35)] ring-3 ring-accent-olive/15 dark:bg-surface-elevated"
-              : "border-border bg-surface-primary text-muted-foreground/70 group-hover:border-accent-sand/70 group-hover:text-accent-sand dark:border-border dark:bg-surface-elevated"
+              ? "border-accent bg-surface-primary text-accent shadow-[0_0_12px_-2px_rgba(199,199,195,0.35)] ring-3 ring-accent/15 dark:bg-surface-elevated"
+              : "border-border bg-surface-primary text-muted-foreground/70 group-hover:border-accent/70 group-hover:text-accent dark:border-border dark:bg-surface-elevated"
           }`}
         >
           {item.num}
@@ -181,9 +181,9 @@ function JourneyEntry({
         <span
           className={`flex h-11 w-11 items-center justify-center rounded-xl border font-mono text-[10px] font-semibold tracking-wider shadow-xs transition-all duration-300 ${
             item.isCurrent
-              ? "border-accent-olive/50 bg-accent-olive/[0.08] text-accent-olive ring-1 ring-accent-olive/20"
+              ? "border-accent/50 bg-accent/[0.08] text-accent ring-1 ring-accent/20"
               : item.type === "creative-practice"
-              ? "border-border bg-surface-secondary/50 text-foreground/80 group-hover:border-accent-sand/40 group-hover:bg-surface-secondary dark:border-border dark:bg-surface-secondary/40 dark:group-hover:border-accent-sand/35"
+              ? "border-border bg-surface-secondary/50 text-foreground/80 group-hover:border-accent/40 group-hover:bg-surface-secondary dark:border-border dark:bg-surface-secondary/40 dark:group-hover:border-accent/35"
               : "border-border bg-surface-secondary/30 text-muted-foreground group-hover:border-border group-hover:text-foreground/75 dark:border-border dark:bg-surface-secondary/20"
           }`}
         >
@@ -202,7 +202,7 @@ function JourneyEntry({
           <span
             className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 font-mono text-[7.5px] font-medium uppercase tracking-widest sm:text-[8px] ${
               item.isCurrent
-                ? "bg-accent-olive/10 text-accent-olive ring-1 ring-accent-olive/30"
+                ? "bg-accent/10 text-accent ring-1 ring-accent/30"
                 : item.type === "creative-practice"
                 ? "bg-surface-secondary text-muted-foreground ring-1 ring-border"
                 : "bg-surface-primary text-muted-foreground ring-1 ring-border"
@@ -210,8 +210,8 @@ function JourneyEntry({
           >
             {item.isCurrent && (
               <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-olive opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-olive" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
               </span>
             )}
             {item.badge}

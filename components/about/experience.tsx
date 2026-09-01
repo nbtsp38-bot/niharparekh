@@ -135,8 +135,8 @@ function ExperienceItem({
         <span
           className={`flex h-6 w-6 items-center justify-center rounded-full border font-mono text-[8px] font-medium tracking-wider transition-all duration-300 sm:h-7 sm:w-7 sm:text-[9px] ${
             entry.isCurrent
-              ? "border-accent-olive bg-surface-primary text-accent-olive shadow-[0_0_12px_-2px_rgba(85,97,69,0.35)] ring-3 ring-accent-olive/15 dark:bg-surface-elevated"
-              : "border-border bg-surface-primary text-muted-foreground/70 group-hover:border-accent-sand/70 group-hover:text-accent-sand dark:border-border dark:bg-surface-elevated"
+              ? "border-accent bg-surface-primary text-accent shadow-[0_0_12px_-2px_rgba(199,199,195,0.35)] ring-3 ring-accent/15 dark:bg-surface-elevated"
+              : "border-border bg-surface-primary text-muted-foreground/70 group-hover:border-accent/70 group-hover:text-accent dark:border-border dark:bg-surface-elevated"
           }`}
         >
           {entry.num}
@@ -145,9 +145,9 @@ function ExperienceItem({
 
       {/* Monogram / Brand Icon */}
       <div className="relative z-10 hidden shrink-0 sm:flex">
-        <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-surface-secondary/50 font-mono text-[10.5px] font-semibold tracking-wider text-foreground/80 shadow-xs transition-all duration-300 group-hover:border-accent-sand/40 group-hover:bg-surface-secondary dark:border-border dark:bg-surface-secondary/40 dark:group-hover:border-accent-sand/35 dark:group-hover:bg-surface-secondary">
+        <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-surface-secondary/50 font-mono text-[10.5px] font-semibold tracking-wider text-foreground/80 shadow-xs transition-all duration-300 group-hover:border-accent/40 group-hover:bg-surface-secondary dark:border-border dark:bg-surface-secondary/40 dark:group-hover:border-accent/35 dark:group-hover:bg-surface-secondary">
           {entry.type === "freelance" ? (
-            <span className="text-accent-sand">{entry.monogram}</span>
+            <span className="text-accent">{entry.monogram}</span>
           ) : (
             <span>{entry.monogram}</span>
           )}
@@ -166,14 +166,14 @@ function ExperienceItem({
             <span
               className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 font-mono text-[7.5px] font-medium uppercase tracking-widest sm:text-[8px] ${
                 entry.isCurrent
-                  ? "bg-accent-olive/10 text-accent-olive ring-1 ring-accent-olive/30"
+                  ? "bg-accent/10 text-accent ring-1 ring-accent/30"
                   : "bg-surface-secondary text-muted-foreground ring-1 ring-border"
               }`}
             >
               {entry.isCurrent && (
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-olive opacity-75" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-olive" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
                 </span>
               )}
               {entry.tag}
