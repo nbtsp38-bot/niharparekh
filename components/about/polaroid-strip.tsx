@@ -63,7 +63,7 @@ function PanelCard({
   const spotlightBg = useTransform(
     [spotX, spotY],
     ([x, y]) =>
-      `radial-gradient(130px circle at ${x}px ${y}px, rgba(178,138,104,0.08) 0%, rgba(203,167,135,0.04) 55%, transparent 75%)`
+      `radial-gradient(140px circle at ${x}px ${y}px, rgba(196,154,60,0.14) 0%, rgba(224,184,102,0.07) 50%, transparent 75%)`
   );
 
   // Smooth outward focus shift for neighboring cards
@@ -146,11 +146,11 @@ function PanelCard({
         }}
         className={`relative flex h-full w-full flex-col overflow-hidden rounded-2xl border p-1.5 transition-all duration-300 ${
           isHovered
-            ? "border-accent-sand/50 bg-surface-elevated shadow-[0_18px_38px_-10px_rgba(28,26,23,0.1),0_4px_12px_-3px_rgba(28,26,23,0.04),inset_0_1px_0_rgba(203,167,135,0.12)] dark:border-accent-sand/45 dark:bg-surface-elevated dark:shadow-[0_20px_45px_-12px_rgba(0,0,0,0.85),0_6px_16px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(240,233,222,0.07)]"
-            : "border-border bg-surface-primary shadow-[0_10px_24px_-8px_rgba(28,26,23,0.06),inset_0_1px_0_rgba(255,253,248,0.8)] dark:border-border dark:bg-surface-primary dark:shadow-[0_14px_34px_-10px_rgba(5,5,5,0.8),inset_0_1px_0_rgba(240,233,222,0.04),inset_0_-1px_0_rgba(5,5,5,0.4)]"
+            ? "border-accent/55 bg-surface-elevated shadow-[0_18px_38px_-10px_rgba(12,10,4,0.25),0_4px_12px_-3px_rgba(12,10,4,0.12),inset_0_1px_0_rgba(224,184,102,0.18)] dark:border-accent/50 dark:bg-surface-elevated dark:shadow-[0_20px_48px_-12px_rgba(0,0,0,0.92),0_6px_18px_-4px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(224,184,102,0.12)]"
+            : "border-border bg-surface-primary shadow-[0_10px_24px_-8px_rgba(12,10,4,0.08),inset_0_1px_0_rgba(224,184,102,0.06)] dark:border-border dark:bg-surface-primary dark:shadow-[0_14px_36px_-10px_rgba(0,0,0,0.88),inset_0_1px_0_rgba(196,154,60,0.06),inset_0_-1px_0_rgba(0,0,0,0.5)]"
         }`}
       >
-        {/* Softbox Studio Lighting Specular Layer */}
+        {/* Gold Spotlight Specular Layer */}
         <motion.div
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.25 }}
@@ -159,9 +159,9 @@ function PanelCard({
         />
 
         {/* Inner Tactile Frame */}
-        <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-border bg-surface-secondary/40 dark:border-border dark:bg-surface-soft/30">
-          {/* Subtle Top Inner Edge Highlight */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
+        <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-border bg-surface-secondary/45 dark:border-border dark:bg-surface-soft/35">
+          {/* Gold top edge glint */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
 
           {/* Micro-Grain / Paper Matte Background Texture */}
           <div 

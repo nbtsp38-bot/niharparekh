@@ -87,7 +87,7 @@ export function ContactCard(): ReactNode {
               background: useTransform(
                 [spotX, spotY],
                 ([x, y]) =>
-                  `radial-gradient(500px circle at ${x} ${y}, rgba(178,138,104,0.035), rgba(169,111,87,0.018) 40%, transparent 70%)`
+                  `radial-gradient(500px circle at ${x} ${y}, rgba(196,154,60,0.08) 0%, rgba(212,168,67,0.04) 45%, transparent 70%)`
               ),
             }}
           />
@@ -132,7 +132,7 @@ export function ContactCard(): ReactNode {
                 className="group relative inline-flex cursor-pointer items-center gap-4 py-2 text-left font-mono text-[14px] sm:text-[16px] font-semibold uppercase tracking-[0.22em] text-foreground transition-colors hover:text-accent"
               >
                 <span>{copied ? "COPIED TO CLIPBOARD" : "LET'S WORK TOGETHER"}</span>
-                <span className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-border bg-surface-secondary text-foreground transition-all duration-300 group-hover:border-accent-sand/60 group-hover:bg-accent-sand group-hover:text-surface-elevated dark:border-border dark:bg-surface-elevated dark:group-hover:text-background-deep">
+                <span className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-border bg-surface-secondary text-foreground transition-all duration-300 group-hover:border-accent/70 group-hover:bg-accent group-hover:text-background dark:border-border dark:bg-surface-elevated dark:group-hover:text-background-deep">
                   {copied ? (
                     <Check className="h-4 w-4" aria-hidden="true" />
                   ) : (
@@ -141,7 +141,7 @@ export function ContactCard(): ReactNode {
                 </span>
 
                 {/* Animated Underline */}
-                <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-gradient-to-r from-accent-sand to-accent-light transition-all duration-400 ease-out group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-gradient-to-r from-accent via-accent-highlight to-accent-light transition-all duration-400 ease-out group-hover:w-full" />
               </button>
             </div>
 

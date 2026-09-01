@@ -3,56 +3,56 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Backgrounds — warm limestone / natural paper */
-  --background: #EEE9E1;
-  --background-secondary: #E3DDD3;
-  --background-deep: #E3DDD3;
+  /* Backgrounds — warm parchment / aged paper */
+  --background: #F0E8D5;
+  --background-secondary: #E8DFC8;
+  --background-deep: #DDD3BB;
 
   /* Surfaces */
-  --surface: #F7F3EC;
-  --surface-primary: #F7F3EC;
-  --surface-secondary: #EAE3D8;
-  --surface-elevated: #FFFDF8;
-  --surface-soft: #EAE3D8;
-  --surface-warm: #EAE3D8;
+  --surface: #F8F2E4;
+  --surface-primary: #F8F2E4;
+  --surface-secondary: #EDE4CE;
+  --surface-elevated: #FDF8EE;
+  --surface-soft: #EDE4CE;
+  --surface-warm: #E5D9C0;
 
   /* Legacy & system mappings */
-  --muted: #EAE3D8;
-  --frame: #EEE9E1;
+  --muted: #EDE4CE;
+  --frame: #F0E8D5;
 
-  /* Text — deep warm charcoal */
-  --text-primary: #1C1A17;
-  --foreground: #1C1A17;
-  --text-secondary: #625D55;
-  --muted-foreground: #625D55;
-  --text-muted: #8B8378;
+  /* Text — deep warm black / dark bronze */
+  --text-primary: #1A1508;
+  --foreground: #1A1508;
+  --text-secondary: #5C4A1E;
+  --muted-foreground: #5C4A1E;
+  --text-muted: #8A7040;
 
-  /* Borders — soft, low opacity */
-  --border: rgba(28, 26, 23, 0.08);
-  --border-strong: rgba(28, 26, 23, 0.14);
+  /* Borders — visible antique gold */
+  --border: rgba(196, 154, 60, 0.22);
+  --border-strong: rgba(196, 154, 60, 0.38);
 
-  /* Photography-inspired natural accents */
-  --sand: #9A7454;
-  --accent: #9A7454;
-  --accent-sand: #9A7454;
-  --accent-light: #B89273;
-  --accent-highlight: #B89273;
-  --accent-soft: rgba(154, 116, 84, 0.08);
-  --terracotta: #9C634D;
-  --accent-terracotta: #9C634D;
-  --olive: #536044;
-  --accent-olive: #536044;
-  --blue-gray: #7F929E;
-  --accent-blue: #7F929E;
+  /* Gold-plated accents */
+  --sand: #B8860B;
+  --accent: #B8860B;
+  --accent-sand: #B8860B;
+  --accent-light: #D4A843;
+  --accent-highlight: #E8C050;
+  --accent-soft: rgba(184, 134, 11, 0.12);
+  --terracotta: #9C5A1A;
+  --accent-terracotta: #9C5A1A;
+  --olive: #7A6820;
+  --accent-olive: #7A6820;
+  --blue-gray: #8A7040;
+  --accent-blue: #8A7040;
 
-  /* Legacy silver/gold tokens — mapped to warm equivalents */
-  --silver: #9A7454;
-  --silver-bright: #B89273;
-  --gold-material: rgba(154, 116, 84, 0.08);
-  --gold-soft: rgba(154, 116, 84, 0.05);
+  /* Gold hierarchy */
+  --silver: #B8860B;
+  --silver-bright: #E8C050;
+  --gold-material: rgba(184, 134, 11, 0.15);
+  --gold-soft: rgba(212, 168, 67, 0.10);
 
   /* Ring */
-  --ring: #9A7454;
+  --ring: #B8860B;
 
   /* Font stacks */
   --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
@@ -61,56 +61,56 @@
 }
 
 .dark {
-  /* Backgrounds — rich warm cinematic charcoal */
-  --background: #0D0C0A;
-  --background-secondary: #12110F;
-  --background-deep: #090908;
+  /* Backgrounds — deep black velvet, almost pure black */
+  --background: #080705;
+  --background-secondary: #0C0A06;
+  --background-deep: #050403;
 
-  /* Surfaces — warm charcoal elevations */
-  --surface: #171612;
-  --surface-primary: #171612;
-  --surface-secondary: #181613;
-  --surface-elevated: #1D1A15;
-  --surface-soft: #1D1A15;
-  --surface-warm: #221E19;
+  /* Surfaces — very dark warm black with gold undertone */
+  --surface: #100E08;
+  --surface-primary: #131008;
+  --surface-secondary: #17130A;
+  --surface-elevated: #1C180D;
+  --surface-soft: #1C180D;
+  --surface-warm: #221B0E;
 
   /* Legacy & system mappings */
-  --muted: #181613;
-  --frame: #0D0C0A;
+  --muted: #17130A;
+  --frame: #080705;
 
-  /* Text — warm ivory */
-  --text-primary: #F0E9DE;
-  --foreground: #F0E9DE;
-  --text-secondary: #B4AA9D;
-  --muted-foreground: #B4AA9D;
-  --text-muted: #81786D;
+  /* Text — rich gold-tinted ivory */
+  --text-primary: #F5E6C0;
+  --foreground: #F5E6C0;
+  --text-secondary: #C9A96E;
+  --muted-foreground: #C9A96E;
+  --text-muted: #8A7040;
 
-  /* Borders — visible warm edges */
-  --border: rgba(240, 233, 222, 0.12);
-  --border-strong: rgba(240, 233, 222, 0.18);
+  /* Borders — visible antique gold */
+  --border: rgba(196, 154, 60, 0.22);
+  --border-strong: rgba(196, 154, 60, 0.38);
 
-  /* Photography-inspired warm accents */
-  --sand: #B28A68;
-  --accent: #B28A68;
-  --accent-sand: #B28A68;
-  --accent-light: #CBA787;
-  --accent-highlight: #CBA787;
-  --accent-soft: rgba(178, 138, 104, 0.10);
-  --terracotta: #A96F57;
-  --accent-terracotta: #A96F57;
-  --olive: #586348;
-  --accent-olive: #586348;
+  /* Gold-plated accents — rich antique metal */
+  --sand: #C49A3C;
+  --accent: #C49A3C;
+  --accent-sand: #C49A3C;
+  --accent-light: #E0B866;
+  --accent-highlight: #EEC878;
+  --accent-soft: rgba(196, 154, 60, 0.14);
+  --terracotta: #B86A2A;
+  --accent-terracotta: #B86A2A;
+  --olive: #8A8230;
+  --accent-olive: #8A8230;
   --blue-gray: #9DADB7;
   --accent-blue: #9DADB7;
 
-  /* Legacy silver/gold tokens — mapped to warm equivalents */
-  --silver: #B28A68;
-  --silver-bright: #CBA787;
-  --gold-material: rgba(178, 138, 104, 0.10);
-  --gold-soft: rgba(178, 138, 104, 0.06);
+  /* Gold hierarchy */
+  --silver: #C49A3C;
+  --silver-bright: #EEC878;
+  --gold-material: rgba(196, 154, 60, 0.18);
+  --gold-soft: rgba(224, 184, 102, 0.12);
 
   /* Ring */
-  --ring: #B28A68;
+  --ring: #C49A3C;
 }
 
 @theme inline {
