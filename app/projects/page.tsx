@@ -19,7 +19,7 @@ export default function ProjectsPage(): ReactNode {
           <h1 className="font-serif text-[2.75rem] font-medium leading-[1.05] tracking-tight text-foreground md:text-[3.25rem] lg:text-[3.75rem]">
             My recent work
           </h1>
-          <p className="max-w-[33ch] text-[20px] leading-[1.4] tracking-tight text-foreground/65 sm:text-[22px]">
+          <p className="max-w-[33ch] text-[20px] leading-[1.4] tracking-tight text-muted-foreground sm:text-[22px]">
             Experiments, collaborations, and projects I&rsquo;m especially proud to have shipped.
           </p>
         </FadeIn>

@@ -181,12 +181,12 @@ export function Projects({
 
         {/* Category Filters */}
         <FadeIn delay={0.05} className="mb-10 flex justify-center">
-          <div className="flex rounded-full bg-foreground/3 p-1 ring-1 ring-foreground/8">
+          <div className="flex rounded-full bg-surface-secondary/80 p-1 ring-1 ring-border">
             <button
               onClick={() => setFilter("all")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "all"
-                  ? "bg-surface-primary text-foreground shadow-sm ring-1 ring-accent/40"
+                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent-sand/45"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -196,7 +196,7 @@ export function Projects({
               onClick={() => setFilter("motion")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "motion"
-                  ? "bg-surface-primary text-foreground shadow-sm ring-1 ring-accent/40"
+                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent-sand/45"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -206,7 +206,7 @@ export function Projects({
               onClick={() => setFilter("short-form")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "short-form"
-                  ? "bg-surface-primary text-foreground shadow-sm ring-1 ring-accent/40"
+                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent-sand/45"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -216,7 +216,7 @@ export function Projects({
               onClick={() => setFilter("promo")}
               className={`rounded-full px-5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-300 ${
                 filter === "promo"
-                  ? "bg-surface-primary text-foreground shadow-sm ring-1 ring-accent/40"
+                  ? "bg-surface-elevated text-foreground shadow-sm ring-1 ring-accent-sand/45"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -330,7 +330,7 @@ function ProjectCard({
             className="h-full w-full object-cover"
           />
           {!isPlaying && (
-            <div className="absolute inset-0 pointer-events-none flex items-center justify-center bg-black/15 transition-opacity duration-300">
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center bg-background-deep/40 transition-opacity duration-300">
               <div className="rounded-full bg-surface-elevated/95 p-3 shadow-lg ring-1 ring-border flex items-center justify-center">
                 <Play className="h-5 w-5 text-foreground fill-foreground translate-x-0.5" />
               </div>

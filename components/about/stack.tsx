@@ -140,11 +140,11 @@ const TOOLS: SoftwareTool[] = [
       <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <defs>
           <linearGradient id="agyStackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#D0B477" />
-            <stop offset="100%" stopColor="#A88A55" />
+            <stop offset="0%" stopColor="#CBA787" />
+            <stop offset="100%" stopColor="#B28A68" />
           </linearGradient>
         </defs>
-        <rect width="24" height="24" rx="5" fill="#141414" />
+        <rect width="24" height="24" rx="5" fill="#171612" />
         <path d="M12 4L18 12L12 20L6 12L12 4Z" stroke="url(#agyStackGrad)" strokeWidth="1.75" fill="none" />
         <circle cx="12" cy="12" r="2.5" fill="url(#agyStackGrad)" />
       </svg>
@@ -418,7 +418,7 @@ export function Stack(): ReactNode {
 function ChipPill({ tool }: { tool: SoftwareTool }): ReactNode {
   return (
     <div
-      className="group inline-flex items-center gap-2.5 rounded-2xl border border-border bg-surface-primary px-3 py-1.5 text-[13px] font-medium tracking-tight text-foreground shadow-[0_4px_14px_-3px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-accent/40 hover:shadow-[0_8px_20px_-4px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(208,180,119,0.25)] dark:border-border dark:bg-surface-elevated dark:text-foreground dark:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.05)] dark:hover:border-accent/40 sm:text-[13.5px]"
+      className="group inline-flex items-center gap-2.5 rounded-2xl border border-border bg-surface-primary px-3 py-1.5 text-[13px] font-medium tracking-tight text-foreground shadow-[0_4px_14px_-3px_rgba(28,26,23,0.06),inset_0_1px_0_rgba(255,253,248,0.8)] transition-all duration-300 hover:border-accent-sand/45 hover:shadow-[0_8px_20px_-4px_rgba(28,26,23,0.12),inset_0_1px_0_rgba(178,138,104,0.25)] dark:border-border dark:bg-surface-elevated dark:text-foreground dark:shadow-[0_4px_16px_-4px_rgba(5,5,5,0.7),inset_0_1px_0_rgba(240,233,222,0.05)] dark:hover:border-accent-sand/45 sm:text-[13.5px]"
     >
       <div className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
         {tool.renderIcon()}

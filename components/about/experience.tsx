@@ -167,7 +167,7 @@ function ExperienceItem({
               className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 font-mono text-[7.5px] font-medium uppercase tracking-widest sm:text-[8px] ${
                 entry.isCurrent
                   ? "bg-accent-olive/10 text-accent-olive ring-1 ring-accent-olive/30"
-                  : "bg-foreground/[0.04] text-muted-foreground ring-1 ring-border/80 dark:bg-white/[0.03] dark:ring-white/[0.08]"
+                  : "bg-surface-secondary text-muted-foreground ring-1 ring-border"
               }`}
             >
               {entry.isCurrent && (

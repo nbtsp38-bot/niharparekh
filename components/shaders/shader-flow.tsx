@@ -84,8 +84,8 @@ const D = {
   iterations: 14,
   scale: 6,
   brightness: 1,
-  colorLowA: [0.18, 0.2, 0.3] as [number, number, number],
-  colorHighA: [0.55, 0.38, 0.32] as [number, number, number],
+  colorLowA: [0.35, 0.39, 0.28] as [number, number, number],   /* soft olive / natural stone */
+  colorHighA: [0.70, 0.54, 0.41] as [number, number, number],  /* warm sand architecture */
   fadeRx: 1.4,
   fadeRy: 0.6,
   fadeCx: 0.5,
@@ -265,7 +265,7 @@ export function ShaderFlow(props: ShaderFlowProps): ReactNode {
     <div
       ref={ref}
       aria-hidden="true"
-      className={props.className ?? "absolute inset-0 h-full w-full grayscale"}
+      className={props.className ?? "absolute inset-0 h-full w-full"}
     />
   );
 }

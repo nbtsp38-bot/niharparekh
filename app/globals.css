@@ -3,41 +3,53 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Backgrounds — warm limestone / natural paper */
-  --background: #F0ECE5;
-  --background-deep: #E4DED4;
+  /* Backgrounds — warm limestone / ivory natural paper */
+  --background: #EEE9E1;
+  --background-secondary: #E3DDD3;
+  --background-deep: #E3DDD3;
 
   /* Surfaces */
-  --surface-primary: #F7F4EE;
-  --surface-secondary: #EDE8E0;
-  --surface-elevated: #FFFFFF;
-  --surface-warm: #E9E2D9;
+  --surface: #F7F3EC;
+  --surface-primary: #F7F3EC;
+  --surface-secondary: #EAE3D8;
+  --surface-elevated: #FFFDF8;
+  --surface-soft: #EAE3D8;
+  --surface-warm: #EAE3D8;
 
-  /* Legacy compat */
-  --muted: #EDE8E0;
-  --frame: #F0ECE5;
+  /* Legacy & system mappings */
+  --muted: #EAE3D8;
+  --frame: #EEE9E1;
 
-  /* Text — warm charcoal, not pure black */
-  --foreground: #1C1B18;
-  --muted-foreground: #655F58;
-  --text-muted: #8C867D;
+  /* Text — deep warm charcoal, not pure black */
+  --text-primary: #1C1A17;
+  --foreground: #1C1A17;
+  --text-secondary: #625D55;
+  --muted-foreground: #625D55;
+  --text-muted: #8B8378;
 
-  /* Borders — low-opacity warm charcoal */
-  --border: rgba(28, 27, 24, 0.10);
-  --border-strong: rgba(28, 27, 24, 0.16);
+  /* Borders */
+  --border: rgba(28, 26, 23, 0.10);
+  --border-strong: rgba(28, 26, 23, 0.17);
 
-  /* Accent family — photography-derived */
-  --accent: #9D7658;           /* warm sand — primary */
-  --accent-light: #B89070;     /* lighter sand highlight */
-  --accent-highlight: #B89070;
-  --accent-soft: rgba(157, 118, 88, 0.13);
-  --accent-sand: #9D7658;
-  --accent-terracotta: #9E6650;
-  --accent-olive: #4E5A42;
-  --accent-blue: #8799A6;
+  /* Photography-inspired natural accents */
+  --sand: #9A7454;
+  --accent: #9A7454;
+  --accent-sand: #9A7454;
+  --accent-light: #B89273;
+  --accent-highlight: #B89273;
+  --accent-soft: rgba(154, 116, 84, 0.13);
+
+  --terracotta: #9C634D;
+  --accent-terracotta: #9C634D;
+
+  --olive: #536044;
+  --accent-olive: #536044;
+
+  --blue-gray: #7F929E;
+  --accent-blue: #7F929E;
 
   /* Ring */
-  --ring: #9D7658;
+  --ring: #9A7454;
 
   /* Font stacks */
   --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
@@ -46,38 +58,50 @@
 }
 
 .dark {
-  /* Backgrounds — layered warm charcoal */
+  /* Backgrounds — warm layered cinematic charcoal */
   --background: #080807;
+  --background-secondary: #10100E;
   --background-deep: #050505;
 
   /* Surfaces */
-  --surface-primary: #141412;
-  --surface-secondary: #1D1C18;
-  --surface-elevated: #25231E;
-  --surface-warm: #2E2B25;
+  --surface: #171612;
+  --surface-primary: #171612;
+  --surface-secondary: #211F1A;
+  --surface-elevated: #211F1A;
+  --surface-soft: #29261F;
+  --surface-warm: #29261F;
 
-  /* Legacy compat */
-  --muted: #1D1C18;
+  /* Legacy & system mappings */
+  --muted: #211F1A;
   --frame: #080807;
 
   /* Text — warm ivory, not pure white */
-  --foreground: #F1ECE5;
-  --muted-foreground: #B8B0A7;
-  --text-muted: #807A72;
+  --text-primary: #F0E9DE;
+  --foreground: #F0E9DE;
+  --text-secondary: #B4AA9D;
+  --muted-foreground: #B4AA9D;
+  --text-muted: #81786D;
 
-  /* Borders — low-opacity warm ivory */
-  --border: rgba(241, 236, 229, 0.10);
-  --border-strong: rgba(241, 236, 229, 0.16);
+  /* Borders */
+  --border: rgba(240, 233, 222, 0.10);
+  --border-strong: rgba(240, 233, 222, 0.17);
 
-  /* Accent family — photography-derived */
-  --accent: #B28A68;           /* warm sand — primary */
-  --accent-light: #C9A485;     /* lighter sand highlight */
-  --accent-highlight: #C9A485;
-  --accent-soft: rgba(178, 138, 104, 0.14);
+  /* Photography-inspired natural accents */
+  --sand: #B28A68;
+  --accent: #B28A68;
   --accent-sand: #B28A68;
+  --accent-light: #CBA787;
+  --accent-highlight: #CBA787;
+  --accent-soft: rgba(178, 138, 104, 0.14);
+
+  --terracotta: #A96F57;
   --accent-terracotta: #A96F57;
-  --accent-olive: #556145;
-  --accent-blue: #A8B7C3;
+
+  --olive: #586348;
+  --accent-olive: #586348;
+
+  --blue-gray: #9DADB7;
+  --accent-blue: #9DADB7;
 
   /* Ring */
   --ring: #B28A68;
@@ -85,25 +109,34 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
   --color-background-deep: var(--background-deep);
   --color-foreground: var(--foreground);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-surface: var(--surface);
   --color-surface-primary: var(--surface-primary);
   --color-surface-secondary: var(--surface-secondary);
   --color-surface-elevated: var(--surface-elevated);
+  --color-surface-soft: var(--surface-soft);
   --color-surface-warm: var(--surface-warm);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-text-muted: var(--text-muted);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-ring: var(--ring);
+  --color-sand: var(--sand);
   --color-accent: var(--accent);
+  --color-accent-sand: var(--accent-sand);
   --color-accent-light: var(--accent-light);
   --color-accent-highlight: var(--accent-highlight);
   --color-accent-soft: var(--accent-soft);
-  --color-accent-sand: var(--accent-sand);
+  --color-terracotta: var(--terracotta);
   --color-accent-terracotta: var(--accent-terracotta);
+  --color-olive: var(--olive);
   --color-accent-olive: var(--accent-olive);
+  --color-blue-gray: var(--blue-gray);
   --color-accent-blue: var(--accent-blue);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);

@@ -204,8 +204,8 @@ function JourneyEntry({
               item.isCurrent
                 ? "bg-accent-olive/10 text-accent-olive ring-1 ring-accent-olive/30"
                 : item.type === "creative-practice"
-                ? "bg-foreground/[0.04] text-muted-foreground ring-1 ring-border/80 dark:bg-white/[0.03] dark:ring-white/[0.08]"
-                : "bg-foreground/[0.025] text-muted-foreground/75 ring-1 ring-border/60 dark:bg-white/[0.02] dark:ring-white/[0.06]"
+                ? "bg-surface-secondary text-muted-foreground ring-1 ring-border"
+                : "bg-surface-primary text-muted-foreground ring-1 ring-border"
             }`}
           >
             {item.isCurrent && (
