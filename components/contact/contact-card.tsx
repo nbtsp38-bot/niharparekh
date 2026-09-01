@@ -1,70 +1,230 @@
-import { Mail, Instagram, Phone } from "lucide-react";
-import Image from "next/image";
+"use client";
+
+import { ArrowUpRight, Check, Instagram, Mail, Phone } from "lucide-react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 
-import { ContactCardCtas } from "./contact-card-ctas";
 import { FadeIn } from "@/components/ui/motion-primitives";
-import { ShaderFlow } from "../shaders/shader-flow";
 
-const CARD_FADE_MASK =
-  "radial-gradient(ellipse 90% 110% at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.4) 90%, rgba(0,0,0,0.15) 100%)";
+const EMAIL = "niharparekh14@gmail.com";
+const INSTAGRAM = "https://www.instagram.com/nihharise";
+
+const CONTACT_LINKS = [
+  {
+    id: "email",
+    label: "EMAIL",
+    value: "niharparekh14@gmail.com",
+    href: `mailto:${EMAIL}`,
+    icon: Mail,
+    isCopy: true,
+  },
+  {
+    id: "instagram",
+    label: "INSTAGRAM",
+    value: "@nihharise",
+    href: INSTAGRAM,
+    icon: Instagram,
+    isExternal: true,
+  },
+  {
+    id: "phone",
+    label: "CONTACT",
+    value: "+91 94288 10041",
+    href: "tel:+919428810041",
+    icon: Phone,
+    isExternal: true,
+  },
+];
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function ContactCard(): ReactNode {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  // Normalized cursor coordinates for subtle atmospheric studio lighting
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const springX = useSpring(mouseX, { stiffness: 180, damping: 28 });
+  const springY = useSpring(mouseY, { stiffness: 180, damping: 28 });
+
+  const spotX = useTransform(springX, [0, 1], ["20%", "80%"]);
+  const spotY = useTransform(springY, [0, 1], ["20%", "80%"]);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>): void => {
+    if (e.pointerType === "touch") return;
+    const el = containerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width);
+    mouseY.set((e.clientY - rect.top) / rect.height);
+  };
+
+  const handleCopyEmail = async (): Promise<void> => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${EMAIL}`;
+    }
+  };
+
   return (
-    <section className="mx-auto my-12 w-full max-w-275 px-6 sm:my-20 sm:px-10">
+    <section className="mx-auto my-16 w-full max-w-275 px-5 sm:my-28 sm:px-8">
       <FadeIn>
-        <div className="relative w-full overflow-hidden rounded-4xl border border-foreground/8 bg-background p-1.5 shadow-sm">
-          <div className="relative w-full overflow-hidden rounded-[1.6rem]">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 opacity-45 dark:opacity-25"
-              style={{
-                WebkitMaskImage: CARD_FADE_MASK,
-                maskImage: CARD_FADE_MASK,
-              }}
-            >
-              <ShaderFlow scale={3} brightness={3}/>
+        <div
+          ref={containerRef}
+          onPointerMove={handlePointerMove}
+          className="relative overflow-hidden rounded-[2.5rem] border border-border/80 bg-surface-primary/70 p-7 backdrop-blur-md shadow-[0_20px_50px_-20px_rgba(0,0,0,0.06)] dark:border-white/[0.07] dark:bg-[#0A0A0A] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.9)] sm:p-12 md:p-16 lg:p-20"
+        >
+          {/* Subtle Atmospheric Studio Light Follower */}
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-full opacity-60 transition-opacity duration-500 dark:opacity-35"
+            style={{
+              background: useTransform(
+                [spotX, spotY],
+                ([x, y]) =>
+                  `radial-gradient(650px circle at ${x} ${y}, color-mix(in srgb, var(--accent) 14%, transparent), transparent 75%)`
+              ),
+            }}
+          />
+
+          {/* Micro-Grain Cinematic Paper / Film Texture */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-[0.03] dark:opacity-[0.045] mix-blend-overlay"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            }}
+          />
+
+          <div className="relative z-10 flex flex-col gap-12 sm:gap-16 md:gap-20">
+            {/* Top Frame Indicator */}
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">
+                01 // END OF FRAME
+              </span>
+              <span className="font-mono text-[9.5px] sm:text-[10px] tracking-widest text-muted-foreground/60 uppercase">
+                AVAILABLE FOR 2026 PROJECTS
+              </span>
             </div>
 
-            <div className="relative grid gap-8 p-6 sm:gap-10 sm:p-7 md:grid-cols-[1.2fr_1fr] md:items-stretch md:gap-6 md:p-6">
-              <div className="flex flex-col gap-5">
-                <h2 className="font-serif text-[2.25rem] font-medium leading-[1.05] tracking-tight text-foreground sm:text-[2.75rem] lg:text-[3.25rem]">
-                  Let&rsquo;s connect
-                </h2>
-                <p className="max-w-[29ch] text-[18px] leading-[1.4] tracking-tight text-foreground/65 sm:text-[22px] mb-6">
-                  I&rsquo;m always open to discussing new projects, creative
-                  ideas, or opportunities to be part of your visions. Just reach out!
-                </p>
-                <ContactCardCtas />
+            {/* Main Editorial Statement */}
+            <div className="flex flex-col gap-6 sm:gap-8">
+              <h2 className="font-serif text-[3.25rem] font-medium leading-[0.92] tracking-tight text-foreground sm:text-[4.75rem] md:text-[5.75rem] lg:text-[6.5rem]">
+                LET&rsquo;S<br />
+                <span className="font-normal italic text-foreground">CREATE.</span>
+              </h2>
+
+              <p className="max-w-[34ch] text-[17px] leading-[1.45] tracking-tight text-muted-foreground sm:text-[21px] md:text-[23px]">
+                Have a project, idea, or visual story in mind? Let&rsquo;s turn it into something worth watching.
+              </p>
+            </div>
+
+            {/* Primary Hero CTA */}
+            <div>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="group relative inline-flex cursor-pointer items-center gap-4 py-2 text-left font-mono text-[14px] sm:text-[16px] font-semibold uppercase tracking-[0.22em] text-foreground transition-colors hover:text-accent"
+              >
+                <span>{copied ? "COPIED TO CLIPBOARD" : "LET'S WORK TOGETHER"}</span>
+                <span className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-border/80 bg-surface-secondary/60 text-foreground transition-all duration-300 group-hover:border-accent/60 group-hover:bg-accent group-hover:text-background dark:border-white/10 dark:bg-white/[0.04]">
+                  {copied ? (
+                    <Check className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                  )}
+                </span>
+
+                {/* Animated Underline */}
+                <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-gradient-to-r from-accent to-accent-highlight transition-all duration-400 ease-out group-hover:w-full" />
+              </button>
+            </div>
+
+            {/* Minimal Editorial Contact Rows */}
+            <div className="flex flex-col border-t border-border/60 dark:border-white/[0.07]">
+              {CONTACT_LINKS.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <motion.div
+                    key={link.id}
+                    whileHover={{ x: 6 }}
+                    transition={{ duration: 0.3, ease: EASE }}
+                    className="group flex border-b border-border/60 dark:border-white/[0.07]"
+                  >
+                    {link.isCopy ? (
+                      <button
+                        type="button"
+                        onClick={handleCopyEmail}
+                        className="flex w-full cursor-pointer items-center justify-between py-4 sm:py-5 text-left transition-colors"
+                      >
+                        <div className="flex items-center gap-3 sm:gap-4">
+                          <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border/70 bg-surface-secondary/40 text-muted-foreground transition-colors group-hover:border-accent/40 group-hover:text-accent dark:border-white/10 dark:bg-white/[0.02]">
+                            {copied ? <Check className="h-3.5 w-3.5" /> : <Icon className="h-3.5 w-3.5" />}
+                          </span>
+                          <span className="font-mono text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.16em] text-foreground transition-colors group-hover:text-accent">
+                            {link.label}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-2 sm:gap-3 text-muted-foreground transition-colors group-hover:text-foreground">
+                          <span className="font-mono text-[12px] sm:text-[13px] tracking-tight">
+                            {copied ? "niharparekh14@gmail.com · Copied!" : link.value}
+                          </span>
+                          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
+                        </div>
+                      </button>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        target={link.isExternal ? "_blank" : undefined}
+                        rel={link.isExternal ? "noopener noreferrer" : undefined}
+                        className="flex w-full cursor-pointer items-center justify-between py-4 sm:py-5 text-left transition-colors"
+                      >
+                        <div className="flex items-center gap-3 sm:gap-4">
+                          <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border/70 bg-surface-secondary/40 text-muted-foreground transition-colors group-hover:border-accent/40 group-hover:text-accent dark:border-white/10 dark:bg-white/[0.02]">
+                            <Icon className="h-3.5 w-3.5" />
+                          </span>
+                          <span className="font-mono text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.16em] text-foreground transition-colors group-hover:text-accent">
+                            {link.label}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-2 sm:gap-3 text-muted-foreground transition-colors group-hover:text-foreground">
+                          <span className="font-mono text-[12px] sm:text-[13px] tracking-tight">
+                            {link.value}
+                          </span>
+                          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
+                        </div>
+                      </Link>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Bottom Signature & Cinematic Closing Title */}
+            <div className="flex flex-col items-center justify-between gap-6 pt-4 sm:flex-row sm:pt-6">
+              <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
+                  NIHAR PAREKH
+                </span>
+                <span className="font-mono text-[9.5px] tracking-widest text-muted-foreground/60 uppercase">
+                  VIDEO EDITOR · MOTION DESIGNER
+                </span>
               </div>
 
-              <div className="border-foreground/8 flex flex-col items-center justify-center gap-6 rounded-[1.1rem] border bg-background p-6 sm:p-8">
-                <div className="flex items-center gap-3 opacity-75">
-                  <SocialIcon
-                    href="mailto:niharparekh14@gmail.com"
-                    label="Email"
-                    lucideIcon={Mail}
-                  />
-                  <SocialIcon
-                    href="https://www.instagram.com/nihharise"
-                    label="Instagram"
-                    lucideIcon={Instagram}
-                  />
-                  <SocialIcon
-                    href="tel:+919428810041"
-                    label="Phone"
-                    lucideIcon={Phone}
-                  />
-                </div>
-                <div className="flex flex-col items-center gap-1 text-center">
-                  <p className="text-[13px] tracking-tight text-foreground/70">
-                    2026 &copy; Built with Next.js
-                  </p>
-                  <p className="text-[12px] tracking-tight text-foreground/45">
-                    Nihar — Video Editor & Motion Designer
-                  </p>
-                </div>
+              {/* Final Movie-Like Closing Statement */}
+              <div className="text-center font-mono text-[10px] sm:text-[11px] font-medium tracking-[0.38em] text-muted-foreground/50 uppercase select-none">
+                THANKS FOR WATCHING.
+              </div>
+
+              <div className="text-center font-mono text-[9.5px] sm:text-[10px] tracking-wider text-muted-foreground/45 sm:text-right">
+                © 2026 NIHAR PAREKH
               </div>
             </div>
           </div>
@@ -74,40 +234,3 @@ export function ContactCard(): ReactNode {
   );
 }
 
-function SocialIcon({
-  href,
-  label,
-  lucideIcon: LucideIcon,
-  imageSrc,
-}: {
-  href: string;
-  label: string;
-  lucideIcon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
-  imageSrc?: string;
-}): ReactNode {
-  const isExternal = href.startsWith("http");
-  const props = isExternal
-    ? { target: "_blank", rel: "noopener noreferrer" }
-    : {};
-  return (
-    <Link
-      href={href}
-      aria-label={label}
-      className="border-foreground/8 hover:border-foreground/15 focus-ring inline-flex h-11 w-11 items-center justify-center rounded-xl border bg-background text-foreground/70 transition-colors hover:text-foreground"
-      {...props}
-    >
-      {LucideIcon ? (
-        <LucideIcon className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" />
-      ) : imageSrc ? (
-        <Image
-          src={imageSrc}
-          alt=""
-          width={14}
-          height={14}
-          aria-hidden="true"
-          className="max-h-[14px] max-w-[14px] object-contain dark:invert"
-        />
-      ) : null}
-    </Link>
-  );
-}
