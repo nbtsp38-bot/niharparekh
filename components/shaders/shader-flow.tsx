@@ -80,17 +80,32 @@ void main(){
 }`;
 
 const D = {
-  flowSpeed: [0.1, 0.2] as [number, number],
-  iterations: 14,
-  scale: 6,
-  brightness: 1,
-  colorLowA: [0.35, 0.39, 0.28] as [number, number, number],   /* soft olive / natural stone */
-  colorHighA: [0.70, 0.54, 0.41] as [number, number, number],  /* warm sand architecture */
-  fadeRx: 1.4,
-  fadeRy: 0.6,
+  // Cinematic slow organic flow
+  flowSpeed: [0.04, 0.06] as [number, number],
+  iterations: 16,
+  scale: 5.5,
+  brightness: 0.85,
+
+  // Antique gold — primary default
+  colorLowA:  [0.533, 0.439, 0.267] as [number, number, number], /* #886F44 — muted brass shadow */
+  colorHighA: [0.757, 0.647, 0.427] as [number, number, number], /* #C1A56D — aged gold highlight */
+
+  fadeRx: 1.6,
+  fadeRy: 0.7,
   fadeCx: 0.5,
   fadeCy: 0.0,
 };
+
+// Deep burgundy preset — for a second layer or alternate instance
+export const BURGUNDY_PRESET = {
+  colorLowA:  [0.478, 0.184, 0.173] as [number, number, number], /* #7A2F2C — deep wine */
+  colorHighA: [0.573, 0.255, 0.231] as [number, number, number], /* #92413B — dusty burgundy */
+  brightness: 0.75,
+  scale: 6.2,
+  flowSpeed: [0.03, 0.05] as [number, number],
+  iterations: 14,
+};
+
 
 function parseColor(input: string): [number, number, number] | null {
   const s = input.trim();

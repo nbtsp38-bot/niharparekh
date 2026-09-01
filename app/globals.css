@@ -20,12 +20,12 @@
   --muted: #EDE4CE;
   --frame: #F0E8D5;
 
-  /* Text — white */
+  /* Text — cool silver / graphite */
   --text-primary: #FFFFFF;
   --foreground: #FFFFFF;
-  --text-secondary: #E0E0E0;
-  --muted-foreground: #E0E0E0;
-  --text-muted: #A0A0A0;
+  --text-secondary: #D4D4D0;
+  --muted-foreground: #D4D4D0;
+  --text-muted: #8C8C88;
 
   /* Borders — visible antique gold */
   --border: rgba(196, 154, 60, 0.22);
@@ -78,12 +78,12 @@
   --muted: #17130A;
   --frame: #080705;
 
-  /* Text — white */
+  /* Text — cool silver / graphite */
   --text-primary: #FFFFFF;
   --foreground: #FFFFFF;
-  --text-secondary: #E0E0E0;
-  --muted-foreground: #E0E0E0;
-  --text-muted: #A0A0A0;
+  --text-secondary: #D4D4D0;
+  --muted-foreground: #D4D4D0;
+  --text-muted: #8C8C88;
 
   /* Borders — visible antique gold */
   --border: rgba(196, 154, 60, 0.22);

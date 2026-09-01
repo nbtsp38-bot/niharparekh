@@ -1,3 +1,4 @@
+import { ArtworkBackground } from "@/components/layout/artwork-background";
 import { Nav } from "@/components/layout/nav";
 import { PageBackdrop } from "@/components/layout/page-backdrop";
 import { Providers } from "@/components/layout/providers";
@@ -60,6 +61,7 @@ export default function RootLayout({
             <path d="M5.50871e-06 0C-0.00788227 37.3001 8.99616 50.0116 50 50H5.50871e-06V0Z" fill="currentColor"/>
           </svg>
           <SkipToContent />
+          <ArtworkBackground />
           <PageBackdrop />
           <Nav />
           {children}
