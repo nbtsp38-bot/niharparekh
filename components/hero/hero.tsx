@@ -36,7 +36,7 @@ export function Hero(): ReactNode {
           </FadeIn>
 
           <ScaleUnblur className="flex justify-center md:justify-end">
-            <div className="relative aspect-[4/5] w-full max-w-sm sm:max-w-md md:max-w-100 lg:max-w-105 overflow-hidden rounded-4xl border border-border bg-surface-primary p-1.5 shadow-sm">
+            <div className="relative aspect-square w-full max-w-sm sm:max-w-md md:max-w-100 lg:max-w-105 overflow-hidden rounded-4xl border border-border bg-surface-primary p-1.5 shadow-sm">
               <div className="relative h-full w-full overflow-hidden rounded-[1.6rem]">
                 <PortraitMorph
                   srcA={PORTRAIT_SRC}
