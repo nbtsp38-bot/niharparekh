@@ -58,6 +58,13 @@ function PanelCard({
   const spotX = useMotionValue(70);
   const spotY = useMotionValue(90);
 
+  // Specular radial gradient
+  const spotlightBg = useTransform(
+    [spotX, spotY],
+    ([x, y]) =>
+      `radial-gradient(130px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.12), transparent 70%)`
+  );
+
   // Push distance for other cards when one is hovered
   const hoveredIndex = PANELS.findIndex((p) => p.id === hoveredId);
   const pushOffset = isOtherHovered
@@ -138,22 +145,12 @@ function PanelCard({
         }`}
       >
         {/* Subtle Specular / Cursor Light Overlay on Hover */}
-        {isHovered && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="pointer-events-none absolute inset-0 z-20 rounded-xl"
-            style={{
-              background: useTransform(
-                [spotX, spotY],
-                ([x, y]) =>
-                  `radial-gradient(130px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.12), transparent 70%)`
-              ),
-            }}
-          />
-        )}
+        <motion.div
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="pointer-events-none absolute inset-0 z-20 rounded-xl"
+          style={{ background: spotlightBg }}
+        />
 
         {/* Inner Card Frame */}
         <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-xl border border-foreground/5 bg-foreground/[0.02] dark:border-white/[0.04] dark:bg-white/[0.02]">
