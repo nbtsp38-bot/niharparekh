@@ -72,12 +72,12 @@ export function ContactCard(): ReactNode {
   };
 
   return (
-    <section className="mx-auto my-16 w-full max-w-275 px-5 sm:my-28 sm:px-8">
+    <section className="mx-auto my-12 w-full max-w-275 px-5 sm:my-20 sm:px-8">
       <FadeIn>
         <div
           ref={containerRef}
           onPointerMove={handlePointerMove}
-          className="relative overflow-hidden rounded-[2.5rem] border border-border bg-surface-primary/70 p-7 backdrop-blur-md shadow-[0_20px_50px_-20px_rgba(0,0,0,0.06)] dark:border-border dark:bg-background-deep dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.9)] sm:p-12 md:p-16 lg:p-20"
+          className="relative overflow-hidden rounded-[2.5rem] border border-border bg-surface-primary/70 px-6 py-8 backdrop-blur-md shadow-[0_20px_50px_-20px_rgba(0,0,0,0.06)] dark:border-border dark:bg-background-deep dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.9)] sm:px-10 sm:py-10 md:px-14 md:py-12 lg:px-16 lg:py-12"
         >
           {/* Subtle Atmospheric Studio Light Follower */}
           <motion.div
@@ -101,11 +101,11 @@ export function ContactCard(): ReactNode {
             }}
           />
 
-          <div className="relative z-10 flex flex-col gap-12 sm:gap-16 md:gap-20">
+          <div className="relative z-10 flex flex-col gap-8 sm:gap-10 md:gap-11">
             {/* Top Frame Indicator */}
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">
-                01 // END OF FRAME
+                Contact Info
               </span>
               <span className="font-mono text-[9.5px] sm:text-[10px] tracking-widest text-muted-foreground/60 uppercase">
                 AVAILABLE FOR 2026 PROJECTS
@@ -113,13 +113,13 @@ export function ContactCard(): ReactNode {
             </div>
 
             {/* Main Editorial Statement */}
-            <div className="flex flex-col gap-6 sm:gap-8">
+            <div className="flex flex-col gap-4 sm:gap-5">
               <h2 className="font-serif text-[3.25rem] font-medium leading-[0.92] tracking-tight text-foreground sm:text-[4.75rem] md:text-[5.75rem] lg:text-[6.5rem]">
                 LET&rsquo;S<br />
                 <span className="font-normal italic text-foreground">CREATE.</span>
               </h2>
 
-              <p className="max-w-[34ch] text-[17px] leading-[1.45] tracking-tight text-muted-foreground sm:text-[21px] md:text-[23px]">
+              <p className="max-w-[34ch] text-[17px] leading-[1.45] tracking-tight text-muted-foreground sm:text-[20px] md:text-[22px]">
                 Have a project, idea, or visual story in mind? Let&rsquo;s turn it into something worth watching.
               </p>
             </div>
@@ -129,7 +129,7 @@ export function ContactCard(): ReactNode {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="group relative inline-flex cursor-pointer items-center gap-4 py-2 text-left font-mono text-[14px] sm:text-[16px] font-semibold uppercase tracking-[0.22em] text-foreground transition-colors hover:text-accent"
+                className="group relative inline-flex cursor-pointer items-center gap-4 py-1 text-left font-mono text-[14px] sm:text-[16px] font-semibold uppercase tracking-[0.22em] text-foreground transition-colors hover:text-accent"
               >
                 <span>{copied ? "COPIED TO CLIPBOARD" : "LET'S WORK TOGETHER"}</span>
                 <span className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-border bg-surface-secondary text-foreground transition-all duration-300 group-hover:border-accent/70 group-hover:bg-accent group-hover:text-background dark:border-border dark:bg-surface-elevated dark:group-hover:text-background-deep">
@@ -160,7 +160,7 @@ export function ContactCard(): ReactNode {
                       <button
                         type="button"
                         onClick={handleCopyEmail}
-                        className="flex w-full cursor-pointer items-center justify-between py-4 sm:py-5 text-left transition-colors"
+                        className="flex w-full cursor-pointer items-center justify-between py-3.5 sm:py-4.5 text-left transition-colors"
                       >
                         <div className="flex items-center gap-3 sm:gap-4">
                           <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-surface-secondary text-muted-foreground transition-colors group-hover:border-accent/40 group-hover:text-accent dark:border-border dark:bg-surface-elevated">
@@ -183,7 +183,7 @@ export function ContactCard(): ReactNode {
                         href={link.href}
                         target={link.isExternal ? "_blank" : undefined}
                         rel={link.isExternal ? "noopener noreferrer" : undefined}
-                        className="flex w-full cursor-pointer items-center justify-between py-4 sm:py-5 text-left transition-colors"
+                        className="flex w-full cursor-pointer items-center justify-between py-3.5 sm:py-4.5 text-left transition-colors"
                       >
                         <div className="flex items-center gap-3 sm:gap-4">
                           <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-surface-secondary text-muted-foreground transition-colors group-hover:border-accent/40 group-hover:text-accent dark:border-border dark:bg-surface-elevated">
@@ -208,7 +208,7 @@ export function ContactCard(): ReactNode {
             </div>
 
             {/* Bottom Signature & Cinematic Closing Title */}
-            <div className="flex flex-col items-center justify-between gap-6 pt-4 sm:flex-row sm:pt-6">
+            <div className="flex flex-col items-center justify-between gap-4 pt-2 sm:flex-row sm:pt-3">
               <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
                 <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
                   NIHAR PAREKH
